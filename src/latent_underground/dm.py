@@ -54,3 +54,19 @@ async def narrate(
         }, indent=2)),
     ])
     return out.completion
+
+
+# Mechanics vocabulary that must never surface in narration. Conservative,
+# flag-not-discard: "delta" is legitimately a river feature in water themes,
+# so flags route to review rather than auto-voiding the run. (Empirical basis:
+# run 2, narration 11 -- "the delta's rejection lingers" rendered the engine's
+# JSON vocabulary as mysticism.)
+MECHANICS_LEXICON = (
+    "delta", "engine", "interpreter", "unparseable", "json",
+    "probe", "budget", "validated", "schema", "tokens",
+)
+
+
+def mechanics_leak_scan(narration: str) -> list[str]:
+    low = narration.lower()
+    return [w for w in MECHANICS_LEXICON if w in low]

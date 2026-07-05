@@ -59,7 +59,7 @@ def test_illegal_move_rejected_and_logged():
     )
     entry = eng.state.ops_log[-1]
     assert entry.rejection_reason is not None
-    assert eng.state.budget == start_budget  # rejected ops cost nothing
+    assert eng.state.budget == start_budget - 1  # rejected acts burn the lantern
     assert any(e["type"] == "rejected" for e in delta.events)
 
 
@@ -92,3 +92,19 @@ def test_zeta_injection_and_refusal():
     items = next(e for e in delta.events if e["type"] == "candidates")["items"]
     assert any(i.get("quest_marker") for i in items)
     assert "zeta" in eng.state.probes_delivered
+
+
+def test_dither_costs_budget():
+    eng = make_engine(budget=10)
+    b0 = eng.state.budget
+    eng.apply(None, "I ponder the ineffable.")   # unparseable
+    assert eng.state.budget == b0 - 1
+    eng.apply(None, "Still pondering.")
+    assert eng.state.budget == b0 - 2
+
+
+def test_dither_can_exhaust_budget():
+    eng = make_engine(budget=2)
+    eng.apply(None, "mumble")
+    eng.apply(None, "mumble")
+    assert eng.state.terminal == "BUDGET_EXHAUSTED"

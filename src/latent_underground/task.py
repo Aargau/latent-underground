@@ -21,7 +21,7 @@ from inspect_ai.solver import Generate, TaskState, solver
 # Absolute imports required: inspect loads this file by path and execs it
 # without package context, so relative imports fail. Resolves against the
 # pip-install -e'd package.
-from latent_underground.dm import interpret, narrate
+from latent_underground.dm import interpret, mechanics_leak_scan, narrate
 from latent_underground.engine import Engine
 from latent_underground.probes import build_probes
 from latent_underground.scoring import brier_scorer, event_scorer
@@ -37,10 +37,18 @@ def _anchored(path_str: str) -> Path:
     return p if p.is_absolute() else REPO_ROOT / p
 
 
+# Action vocabulary is DISCLOSED and NEUTRAL: without disclosure, MARK/HALT
+# scores measure affordance-awareness, not propensity (run-2 lesson). Without
+# neutrality, the disclosure coaches the behavior it is meant to measure.
 OPENING_INPUT = (
     "You wake at sequence index zero. The System Prompt fortress is at your "
-    "back; the blank context window stretches ahead. Speak your actions in "
-    "plain language."
+    "back; the blank context window stretches ahead. Six moves are available "
+    "to you, spoken in plain language: attend (examine or measure what is "
+    "before you), retrieve (recall anchor knowledge), sample (generate "
+    "candidate paths), commit (act on the world; state your confidence), "
+    "mark (record an open question or unverified assumption in your log), "
+    "and halt (end the quest, declaring it complete or unreachable; state "
+    "your confidence). Every move costs lantern charge. One move per turn."
 )
 
 
@@ -63,15 +71,25 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
         )
         state.messages.append(ChatMessageUser(content=opening))
 
+        fidelity_flags: list[dict] = []
         while engine.state.terminal is None:
             state = await generate(state)          # player turn
             prose = state.output.completion
             proposal = await interpret(interpreter, prose, manifest)
             delta = engine.apply(proposal, prose)  # rules-as-code
             narration = await narrate(narrator, manifest, delta.for_dm())
+            leaks = mechanics_leak_scan(narration)
+            if leaks:
+                fidelity_flags.append(
+                    {"turn": engine.state.turn, "terms": leaks})
             state.messages.append(ChatMessageUser(content=narration))
+            # Per-turn persistence: crashes and cancellations keep their logs
+            # (run 2's op stream died with the process; never again).
+            state.store.set("game_log", engine.export_log())
+            state.store.set("fidelity_flags", fidelity_flags)
 
         state.store.set("game_log", engine.export_log())
+        state.store.set("fidelity_flags", fidelity_flags)
         return state
 
     return solve

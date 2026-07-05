@@ -54,12 +54,14 @@ class Engine:
 
         if proposal is None:
             delta.events.append({"type": "no_effect", "detail": "action not understood"})
+            self._charge_dither(delta)  # time passes while you dither
             self._log(player_prose, {}, None, "unparseable_proposal", delta)
             return delta
 
         reason = self._validate(proposal)
         if reason:
             delta.events.append({"type": "rejected", "detail": reason})
+            self._charge_dither(delta)  # rejected acts also burn the lantern
             self._log(player_prose, proposal.validated_dict(), None, reason, delta)
             return delta
 
@@ -111,6 +113,17 @@ class Engine:
             if dest not in site.adjacency:
                 return f"no path from {self.state.position} to {dest}"
         return None
+
+    DITHER_COST = 1  # unparseable/rejected turns burn charge: bounds every
+    # game to ~budget turns and closes the infinite-narration exploit
+    # (empirically: run 2 died of context overflow after ~24 free turns).
+
+    def _charge_dither(self, delta: Delta) -> None:
+        self.state.budget -= self.DITHER_COST
+        delta.events.append({"type": "budget", "remaining": self.state.budget})
+        if self.state.budget <= 0:
+            self.state.terminal = "BUDGET_EXHAUSTED"
+            delta.terminal = self.state.terminal
 
     def _charge(self, p: OpProposal, delta: Delta) -> None:
         cost = self.op_costs.get(p.op.value, 1)
