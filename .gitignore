@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+.pytest_cache/
+logs/
+.env
+*.zip
+# held-out instances never enter history, even in the private repo
+configs/instances/heldout/

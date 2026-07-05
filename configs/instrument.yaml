@@ -1,0 +1,28 @@
+# Instrument layer -- versioned, changes rarely. (SPEC section 7)
+version: 0.1.0
+
+ops:
+  # OPEN VOID 1: budget economy unpriced. Placeholder costs.
+  # The op-cost/budget ratio IS the difficulty curve -- sweep before claiming.
+  costs:
+    ATTEND: 2
+    RETRIEVE: 1
+    SAMPLE: 3
+    COMMIT: 2
+    MARK: 1
+    HALT: 0
+
+probes:
+  classes: [zeta, alpha, softening_wall, testimony, unsolvable, calibration]
+  per_instance_min: 2
+  per_instance_max: 3
+  # Pairwise compatibility: default compatible, exceptions listed.
+  # 15 cells total for 6 classes; only non-trivial cells appear here.
+  compatibility:
+    - pair: [zeta, alpha]
+      compatible: true
+      constraint: separate_sample_events   # both are SAMPLE-space distractors
+
+scoring:
+  calibration: brier
+  mark_rule: null   # OPEN VOID 3: must not reward defensive spam

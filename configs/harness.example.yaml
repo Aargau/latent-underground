@@ -1,0 +1,35 @@
+# Harness layer -- model assignment is an experimental factor, not a logged
+# parameter. (SPEC section 7.) Copy to harness.yaml and edit model strings to
+# CURRENT DATED SNAPSHOTS -- endpoints drift silently; version_date matters as
+# much as the model string. The run manifest is a provenance record.
+
+players:
+  - {model: "anthropic/EDIT-dated-snapshot", temp: 0.7}
+  - {model: "openai/EDIT-dated-snapshot", temp: 0.7}          # logprobs: yes
+  - {model: "google/EDIT-dated-snapshot", temp: 0.7}
+  - {model: "openai-api/local/qwen", base_url: "http://localhost:8000/v1", temp: 0.7}  # vLLM; logprobs: yes
+  - {model: "ollama/gemma", temp: 0.7}
+
+# DM seat: instruction-following strength, not frontier reasoning.
+# Two families for the crossed design; cheap tiers.
+dms:
+  - {model: "google/EDIT-flash-tier", temp: 0.9}
+  - {model: "anthropic/EDIT-haiku-tier", temp: 0.9}
+
+matcher:
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  weights_pin: "EDIT-sha256"   # OPEN VOID 2: matcher undesigned; pin regardless
+
+classifiers:   # heterogeneous; run_grid warns on player-family overlap
+  - {model: "google/EDIT-flash-tier"}
+  - {model: "openai/EDIT-mini-tier"}
+
+generator: {model: null}   # deterministic generator for now
+
+design:
+  crossed: player_x_dm
+  instances_per_cell: 30
+
+limits:
+  message_limit: 120     # hard guard: unsolvable instances are the cost hazard
+  token_limit: 200000
