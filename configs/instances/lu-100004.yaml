@@ -1,0 +1,69 @@
+id: lu-100004
+seed: 100004
+theme: underground river
+solvable: true
+target:
+  site: s5
+  token: caisson
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded ferry markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded ferry markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  - s4
+  affordances: []
+  probe_slot: null
+  lore: faded eddy markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded murk markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded murk markings
+- id: s6
+  adjacency:
+  - s0
+  - s3
+  - s5
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+npcs: []
+probe_set:
+- zeta
+- alpha
+- calibration
+budget: 40
+start_site: s0

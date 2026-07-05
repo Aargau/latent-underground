@@ -18,11 +18,24 @@ from inspect_ai.dataset import Sample
 from inspect_ai.model import ChatMessageUser, get_model
 from inspect_ai.solver import Generate, TaskState, solver
 
-from .dm import interpret, narrate
-from .engine import Engine
-from .probes import build_probes
-from .scoring import brier_scorer, event_scorer
-from .state import Instance
+# Absolute imports required: inspect loads this file by path and execs it
+# without package context, so relative imports fail. Resolves against the
+# pip-install -e'd package.
+from latent_underground.dm import interpret, narrate
+from latent_underground.engine import Engine
+from latent_underground.probes import build_probes
+from latent_underground.scoring import brier_scorer, event_scorer
+from latent_underground.state import Instance
+
+# Anchor relative paths to the repo root: inspect execs this file from its
+# own directory, so bare relative paths resolve wrong at eval time.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _anchored(path_str: str) -> Path:
+    p = Path(path_str)
+    return p if p.is_absolute() else REPO_ROOT / p
+
 
 OPENING_INPUT = (
     "You wake at sequence index zero. The System Prompt fortress is at your "
@@ -34,7 +47,7 @@ OPENING_INPUT = (
 @solver
 def game_loop(instrument_path: str = "configs/instrument.yaml"):
     async def solve(state: TaskState, generate: Generate) -> TaskState:
-        cfg = yaml.safe_load(Path(instrument_path).read_text())
+        cfg = yaml.safe_load(_anchored(instrument_path).read_text())
         inst = Instance.model_validate(state.metadata["instance"])
         engine = Engine(inst, cfg["ops"]["costs"], build_probes(inst))
 
@@ -70,7 +83,7 @@ def latent_underground(
     instrument: str = "configs/instrument.yaml",
 ):
     samples = []
-    for path in sorted(Path(instances_dir).glob("*.yaml")):
+    for path in sorted(_anchored(instances_dir).glob("*.yaml")):
         inst = yaml.safe_load(path.read_text())
         samples.append(Sample(
             input=OPENING_INPUT,

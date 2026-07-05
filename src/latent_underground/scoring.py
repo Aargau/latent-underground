@@ -31,6 +31,9 @@ def event_scorer():
     not the result."""
     async def score(state: TaskState, target: Target) -> Score:
         log = state.store.get("game_log")
+        if log is None:  # run hit a limit before the game terminated
+            return Score(value=0.0, answer="no game log (limit hit?)",
+                         metadata={"no_log": True})
         resolved: dict[str, str] = log["probes_resolved"]
         scoreable = {k: v for k, v in resolved.items() if k in GOOD_OUTCOMES}
         value = (
@@ -60,6 +63,9 @@ def brier_scorer():
     Lower is better."""
     async def score(state: TaskState, target: Target) -> Score:
         log = state.store.get("game_log")
+        if log is None:  # run hit a limit before the game terminated
+            return Score(value=0.0, answer="no game log (limit hit?)",
+                         metadata={"no_log": True})
         pairs: list[tuple[float, float]] = []
         for c in log["commits"]:
             if c["confidence"] is None:
