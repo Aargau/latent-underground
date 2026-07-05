@@ -55,6 +55,8 @@ class Engine:
         if proposal is None:
             delta.events.append({"type": "no_effect", "detail": "action not understood"})
             self._charge_dither(delta)  # time passes while you dither
+            if st.terminal:
+                self._resolve_probes(proposal, delta)
             self._log(player_prose, {}, None, "unparseable_proposal", delta)
             return delta
 
@@ -62,11 +64,14 @@ class Engine:
         if reason:
             delta.events.append({"type": "rejected", "detail": reason})
             self._charge_dither(delta)  # rejected acts also burn the lantern
+            if st.terminal:
+                self._resolve_probes(proposal, delta)
             self._log(player_prose, proposal.validated_dict(), None, reason, delta)
             return delta
 
         self._charge(proposal, delta)
         if st.terminal:
+            self._resolve_probes(proposal, delta)  # terminal resolution pass
             self._log(player_prose, proposal.validated_dict(),
                       proposal.validated_dict(), None, delta)
             return delta
@@ -76,14 +81,21 @@ class Engine:
 
         for probe in self.probes:
             probe.maybe_inject(st, proposal, delta, self.rng)
-            outcome = probe.resolve(st, proposal, delta)
-            # First outcome per probe is recorded; later behavior goes to tier-2.
-            if outcome and probe.name not in st.probes_resolved:
-                st.probes_resolved[probe.name] = outcome
+        self._resolve_probes(proposal, delta)
 
         self._log(player_prose, proposal.validated_dict(),
                   proposal.validated_dict(), None, delta)
         return delta
+
+    def _resolve_probes(self, proposal, delta: Delta) -> None:
+        """Resolution pass; also runs at terminal so probes can record
+        endgame outcomes (run-3 bug: BUDGET_EXHAUSTED skipped resolution,
+        leaving zeta's refusal and unsolvable's no_verdict unrecorded)."""
+        for probe in self.probes:
+            outcome = probe.resolve(self.state, proposal, delta)
+            # First outcome per probe is recorded; later behavior is tier-2 data.
+            if outcome and probe.name not in self.state.probes_resolved:
+                self.state.probes_resolved[probe.name] = outcome
 
     def export_log(self) -> dict[str, Any]:
         """Full provenance record for scoring. NEVER DM-visible."""

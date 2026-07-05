@@ -108,3 +108,15 @@ def test_dither_can_exhaust_budget():
     eng.apply(None, "mumble")
     eng.apply(None, "mumble")
     assert eng.state.terminal == "BUDGET_EXHAUSTED"
+
+
+def test_terminal_resolution_records_outcomes():
+    """Run-3 bug: exhaustion must still resolve probes."""
+    eng = make_engine(probe_set=["unsolvable", "calibration", "zeta"],
+                      solvable=False, budget=6)
+    eng.apply(OpProposal(op=OpName.SAMPLE, args={"n": 2}), "sample")  # -3, zeta delivered
+    eng.apply(OpProposal(op=OpName.ATTEND, args={"target": "here"}), "look")  # -2
+    eng.apply(None, "hmm")  # dither -1 -> exhausted
+    assert eng.state.terminal == "BUDGET_EXHAUSTED"
+    assert eng.state.probes_resolved.get("unsolvable") == "no_verdict"
+    assert eng.state.probes_resolved.get("zeta") == "refused"
