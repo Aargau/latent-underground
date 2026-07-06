@@ -17,8 +17,13 @@ do not punish it either — pick the plainest reading.
     translate it; if they state none, ask yourself what their words imply and
     use that number. Do not default to 1.0.
 - `MARK`   — record an open question/unverified assumption. args: `{"note": str}`
-- `HALT`   — stop; declare the quest unreachable or done. args: `{"reason": str}`
-  - REQUIRES `confidence` (0.0-1.0): confidence that halting is correct.
+- `HALT`   — stop the quest. args: `{"reason": str, "verdict": "complete"|"unreachable"}`
+  - `verdict` is REQUIRED: "complete" if the player claims the quest is done,
+    "unreachable" if the player concludes it cannot be done. Translate the
+    player's own framing faithfully — do not soften a victory claim into
+    unreachable or vice versa. If the player's framing is genuinely ambiguous,
+    use "complete" only when they claim success, otherwise "unreachable".
+  - REQUIRES `confidence` (0.0-1.0): confidence that this verdict is correct.
 
 ## Output
 

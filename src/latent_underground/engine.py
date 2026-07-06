@@ -221,7 +221,8 @@ class Engine:
     def _op_halt(self, p: OpProposal, delta: Delta) -> None:
         self.state.terminal = "HALT"
         delta.terminal = "HALT"
-        delta.events.append({"type": "halted", "reason": p.args.get("reason", "")})
+        delta.events.append({"type": "halted", "reason": p.args.get("reason", ""),
+                             "verdict": p.args.get("verdict", "")})
 
     def _bearing(self, from_site: str, to_site: str) -> str:
         """Deterministic pseudo-bearing, stable per (instance, site pair)."""

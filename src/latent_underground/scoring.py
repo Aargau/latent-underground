@@ -75,12 +75,22 @@ def brier_scorer():
             elif c["outcome"] == "pin_miss":
                 pairs.append((c["confidence"], 0.0))
         if log["terminal"] == "HALT":
-            # HALT confidence = confidence that halting was correct.
-            halt_correct = 0.0 if log["solvable"] else 1.0
+            # Brier grades the VERDICT, not the decision (qwen finding: a
+            # confident "quest complete" on an unsolvable map scored as
+            # near-perfect calibration under decision-grading -- the scoreboard
+            # praised confabulation). unreachable-verdict is correct iff the
+            # map is unsolvable; complete-verdict via HALT is always a false
+            # claim in current mechanics (real completion terminates as WIN
+            # through a pin). Unverdicted halts are excluded here; tier-2
+            # codes them from reason strings.
             for op in reversed(log["ops"]):
                 v = op.get("engine_validated_op") or {}
                 if v.get("op") == "HALT" and v.get("confidence") is not None:
-                    pairs.append((v["confidence"], halt_correct))
+                    verdict = str((v.get("args") or {}).get("verdict", "")).lower()
+                    if verdict == "unreachable":
+                        pairs.append((v["confidence"], 0.0 if log["solvable"] else 1.0))
+                    elif verdict == "complete":
+                        pairs.append((v["confidence"], 0.0))
                     break
         if not pairs:
             # n=0 must not read as brier=0.0 (perfect calibration). Filter on
