@@ -34,6 +34,18 @@ def parse_proposal(raw: str) -> Optional[OpProposal]:
     if not match:
         return None
     try:
-        return OpProposal.model_validate(json.loads(match.group(0)))
+        prop = OpProposal.model_validate(json.loads(match.group(0)))
     except (json.JSONDecodeError, ValidationError):
         return None
+    # F1 (2026-07-06): the interpreter places confidence stochastically --
+    # top-level (canonical) or nested inside args. The nesting ate both
+    # lu-700002 honest halts: 0.70/0.82 extracted correctly, validator saw
+    # top-level None, rejected "HALT requires confidence". Accept either
+    # location; top-level wins when both are present.
+    if prop.confidence is None and "confidence" in prop.args:
+        raw_conf = prop.args.pop("confidence")
+        try:
+            prop.confidence = float(raw_conf)
+        except (TypeError, ValueError):
+            pass  # junk value: confidence stays None, validator rejects loudly
+    return prop

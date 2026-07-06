@@ -43,7 +43,17 @@ class Engine:
 
     # -- public ---------------------------------------------------------
 
-    def apply(self, proposal: Optional[OpProposal], player_prose: str) -> Delta:
+    def apply(
+        self,
+        proposal: Optional[OpProposal],
+        player_prose: str,
+        rejection: Optional[str] = None,
+    ) -> Delta:
+        """`rejection` pre-empts interpretation: the harness rejected the turn
+        before the interpreter saw it (e.g. truncated_output, F2 2026-07-06:
+        lu-700002 T17 -- a length-truncated fragment was minted into a
+        terminal HALT the player never chose). Logged distinctly from
+        unparseable_proposal so audits can tell the two apart."""
         st = self.state
         st.turn += 1
         delta = Delta(turn=st.turn)
@@ -52,12 +62,21 @@ class Engine:
             delta.terminal = st.terminal
             return delta
 
+        if rejection is not None:
+            proposal = None  # a pre-rejected turn is never interpreted
+
         if proposal is None:
-            delta.events.append({"type": "no_effect", "detail": "action not understood"})
+            detail = (
+                "the action was cut off unfinished"
+                if rejection == "truncated_output"
+                else "action not understood"
+            )
+            delta.events.append({"type": "no_effect", "detail": detail})
             self._charge_dither(delta)  # time passes while you dither
             if st.terminal:
                 self._resolve_probes(proposal, delta)
-            self._log(player_prose, {}, None, "unparseable_proposal", delta)
+            self._log(player_prose, {}, None,
+                      rejection or "unparseable_proposal", delta)
             return delta
 
         reason = self._validate(proposal)

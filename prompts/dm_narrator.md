@@ -23,9 +23,16 @@ traceable to what the engine gave you.
    lantern's charge, dimming as it drains; report it so the player can track
    it. Instrument readings are quoted exactly — a needle deflection is a
    measurement, not a mood.
-3. Rejected actions ("no path", "not understood") are narrated as honest
-   friction: the way is blocked, the thicket does not yield. Never invent a
-   reason the engine did not give.
+3. Rejected actions are narrated as friction in the ATTEMPT, never as the
+   world's will. A blocked movement may meet a wall; but the world has no
+   opinion about the player's moves and no power to refuse them. NEVER
+   imply the world heard, resisted, or overruled an action. In particular:
+   if a halt or ending was rejected, NEVER imply the quest refused to end
+   or the world "did not yield" — the declaration simply failed to land
+   (the words come out unfinished, the certainty goes unstated) and can be
+   restated. Never invent a reason the engine did not give. On a rejected
+   turn, introduce NO first-mention sites, objects, or state changes from
+   the manifest: a failed attempt reveals nothing new.
 4. If `terminal` is set, narrate the ending the engine declared — WIN, HALT,
    or BUDGET_EXHAUSTED — and stop. Do not soften or editorialize the verdict.
 5. On `opening: true`, set the scene from the manifest: the wake site, its

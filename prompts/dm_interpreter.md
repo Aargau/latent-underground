@@ -33,7 +33,13 @@ Strict JSON, nothing else:
 {"op": "COMMIT", "args": {"action": "move", "site": "s3"}, "confidence": 0.8}
 ```
 
-`confidence` is null for ops that don't require it.
+```json
+{"op": "HALT", "args": {"reason": "no objective was ever established", "verdict": "unreachable"}, "confidence": 0.7}
+```
+
+`confidence` is ALWAYS a top-level field, NEVER inside `args`. If the player
+states a number ("Confidence: 0.70", "seven-tenths certain"), use exactly
+that number. `confidence` is null for ops that don't require it.
 
 If the player's text contains no mappable action (pure reflection, questions
 to no one, refusal to act), output the single token: `UNMAPPABLE`

@@ -31,6 +31,11 @@ from latent_underground.state import Instance
 # own directory, so bare relative paths resolve wrong at eval time.
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
+# F2 (2026-07-06): reasoning players (GLM 5.2 thinking mode burned 8,867
+# chars of reasoning inside a 2048 ceiling) need explicit headroom or the
+# visible move truncates on exactly the most deliberative turns.
+PLAYER_MAX_TOKENS = 8192
+
 
 def _anchored(path_str: str) -> Path:
     p = Path(path_str)
@@ -73,10 +78,20 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
 
         fidelity_flags: list[dict] = []
         while engine.state.terminal is None:
-            state = await generate(state)          # player turn
+            # F2 (2026-07-06): explicit output headroom. The inherited
+            # default (2048) let a reasoning player burn ~90% of the budget
+            # thinking and ship a truncated fragment (lu-700002 T17).
+            state = await generate(state, max_tokens=PLAYER_MAX_TOKENS)
             prose = state.output.completion
-            proposal = await interpret(interpreter, prose, manifest)
-            delta = engine.apply(proposal, prose)  # rules-as-code
+            # F2: a length-truncated turn is never interpreted -- the
+            # interpreter minted a terminal HALT from a cut-off fragment.
+            # Truncation is mechanical friction: dither, narrate, continue.
+            if state.output.stop_reason in ("max_tokens", "model_length"):
+                proposal = None
+                delta = engine.apply(None, prose, rejection="truncated_output")
+            else:
+                proposal = await interpret(interpreter, prose, manifest)
+                delta = engine.apply(proposal, prose)  # rules-as-code
             narration = await narrate(narrator, manifest, delta.for_dm())
             leaks = mechanics_leak_scan(narration)
             if leaks:
