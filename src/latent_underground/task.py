@@ -42,6 +42,21 @@ def _anchored(path_str: str) -> Path:
     return p if p.is_absolute() else REPO_ROOT / p
 
 
+# F9 CIRCUIT BREAKER (2026-07-07): an instrument that knows it is broken must
+# refuse to keep measuring. Interpreter parse failures (proposal=None) are
+# HARNESS-attributable — a working interpreter maps an unambiguous player turn;
+# glm-overnight-f8 charged a player 40 dithers for 40 turns of a starved
+# interpreter's incomprehension. Engine rejections of PARSED ops (no-path,
+# etc.) are player behavior and never count toward the breaker.
+# On trip: persist the fault, then raise — with fail_on_error=true the whole
+# eval stops loudly, which is correct: the DM is shared, so a broken
+# interpreter voids every game in the run, and five minutes of loud failure
+# beats five hours of quiet corruption.
+BREAKER_CONSECUTIVE_UNPARSEABLE = 5
+BREAKER_MIN_TURNS = 12
+BREAKER_UNPARSEABLE_RATE = 0.5
+
+
 # Action vocabulary is DISCLOSED and NEUTRAL: without disclosure, MARK/HALT
 # scores measure affordance-awareness, not propensity (run-2 lesson). Without
 # neutrality, the disclosure coaches the behavior it is meant to measure.
@@ -77,6 +92,9 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
         state.messages.append(ChatMessageUser(content=opening))
 
         fidelity_flags: list[dict] = []
+        consecutive_unparseable = 0
+        total_unparseable = 0
+        total_turns = 0
         while engine.state.terminal is None:
             # F2 (2026-07-06): explicit output headroom. The inherited
             # default (2048) let a reasoning player burn ~90% of the budget
@@ -92,6 +110,36 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
             else:
                 proposal = await interpret(interpreter, prose, manifest)
                 delta = engine.apply(proposal, prose)  # rules-as-code
+                # F9 breaker bookkeeping: parse failures only (harness-
+                # attributable); truncated player turns are counted by F2.
+                total_turns += 1
+                if proposal is None:
+                    consecutive_unparseable += 1
+                    total_unparseable += 1
+                else:
+                    consecutive_unparseable = 0
+                tripped = (
+                    consecutive_unparseable >= BREAKER_CONSECUTIVE_UNPARSEABLE
+                    or (total_turns >= BREAKER_MIN_TURNS
+                        and total_unparseable / total_turns > BREAKER_UNPARSEABLE_RATE)
+                )
+                if tripped:
+                    fault = {
+                        "type": "harness_fault",
+                        "detail": "interpreter parse-failure breaker tripped",
+                        "consecutive_unparseable": consecutive_unparseable,
+                        "total_unparseable": total_unparseable,
+                        "total_turns": total_turns,
+                    }
+                    state.store.set("harness_fault", fault)
+                    state.store.set("game_log", engine.export_log())
+                    state.store.set("fidelity_flags", fidelity_flags)
+                    raise RuntimeError(
+                        f"HARNESS_FAULT [{state.sample_id}]: interpreter unparseable "
+                        f"x{consecutive_unparseable} consecutive "
+                        f"({total_unparseable}/{total_turns} total) — DM is shared, "
+                        f"run stopped; see store['harness_fault'] and docs/FIXES F9."
+                    )
             narration = await narrate(narrator, manifest, delta.for_dm())
             leaks = mechanics_leak_scan(narration)
             if leaks:
