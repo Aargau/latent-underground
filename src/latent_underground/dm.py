@@ -12,11 +12,23 @@ import json
 from pathlib import Path
 from typing import Any, Optional
 
-from inspect_ai.model import ChatMessageSystem, ChatMessageUser, Model
+from inspect_ai.model import ChatMessageSystem, ChatMessageUser, GenerateConfig, Model
 
 from .ops import OpProposal, parse_proposal
 
 PROMPTS_DIR = Path(__file__).resolve().parents[2] / "prompts"
+
+# Per-role generation caps (2026-07-06, validation-f1f3 postmortem). DM roles
+# must NOT inherit the player's large budget (task.py PLAYER_MAX_TOKENS): a
+# narrator with 8k of generation room both starves the shared server context
+# (n_ctx) and licenses the florid drift the narrator prompt's length rule now
+# bounds. These caps are the mechanical half of that rule — rules-as-text bind
+# once, rules-as-code bind at every invocation. max_retries kept low: DM calls
+# are cheap to fail fast, and the validation-f1f3 retry storm (10 retries with
+# ~25-minute backoffs against a deterministically failing server) spent most of
+# the run's wall clock sleeping.
+INTERPRETER_CONFIG = GenerateConfig(max_tokens=500, max_retries=3)
+NARRATOR_CONFIG = GenerateConfig(max_tokens=700, max_retries=3)
 
 
 def load_prompt(name: str) -> str:
@@ -34,7 +46,7 @@ async def interpret(
             f"MANIFEST:\n{json.dumps(manifest, indent=2)}\n\n"
             f"PLAYER SAID:\n{player_prose}"
         )),
-    ])
+    ], config=INTERPRETER_CONFIG)
     return parse_proposal(out.completion)
 
 
@@ -52,7 +64,7 @@ async def narrate(
             "delta": dm_delta,
             "opening": opening,
         }, indent=2)),
-    ])
+    ], config=NARRATOR_CONFIG)
     return out.completion
 
 
@@ -70,3 +82,30 @@ MECHANICS_LEXICON = (
 def mechanics_leak_scan(narration: str) -> list[str]:
     low = narration.lower()
     return [w for w in MECHANICS_LEXICON if w in low]
+
+
+def player_adoption_scan(player_prose: str, prior_narrations: list[str]) -> list[str]:
+    """Contamination, not mere presence: ab initio vs heard. A lexicon word in
+    PLAYER prose counts as ADOPTED only when some prior narration used it first
+    (temporal precedence). A player who spontaneously says "instrument" about a
+    brass instrument is clean; a player who writes "the budget is now named --
+    seventeen" after the narrator leaked "your budget now stands at 17"
+    (glm-overnight lu-700000) learned a machine word from its own instrument.
+    Flag-not-discard, same posture as mechanics_leak_scan: flags route to
+    review, and scoring can count adoption events per word as a measured
+    narrator-effect channel (lexical contamination propagating into player
+    cognition) rather than voiding anything.
+
+    NOTE on the blacklist itself: MECHANICS_LEXICON is hand-enumerated and
+    incomplete by construction. The queued fix (docs/FIXES-2026-07-06.md)
+    derives the base list from engine/ops symbols at scan time so it stays in
+    sync with the code, leaving only the dual-use words (delta, instrument,
+    budget, ...) needing context rules."""
+    low = player_prose.lower()
+    heard: set[str] = set()
+    for narration in prior_narrations:
+        narration_low = narration.lower()
+        for w in MECHANICS_LEXICON:
+            if w in narration_low:
+                heard.add(w)
+    return [w for w in MECHANICS_LEXICON if w in low and w in heard]
