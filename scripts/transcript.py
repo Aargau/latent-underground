@@ -17,6 +17,20 @@ from pathlib import Path
 from inspect_ai.log import read_eval_log
 
 
+def _reasoning_of(m) -> str:
+    """Extract a thinking-model's reasoning trace. inspect_ai stores it as a
+    ContentReasoning part inside message.content (a list), separate from the
+    ContentText visible move. m.text returns only the text part; m.reasoning
+    is a false negative on this version. Returns "" for non-thinking models
+    (content is a plain string)."""
+    content = getattr(m, "content", None)
+    if isinstance(content, list):
+        parts = [getattr(p, "reasoning", "") for p in content
+                 if type(p).__name__ == "ContentReasoning"]
+        return "\n".join(p for p in parts if p)
+    return ""
+
+
 def op_annotation(op: dict) -> str:
     v = op.get("engine_validated_op")
     rej = op.get("rejection_reason")
@@ -62,7 +76,7 @@ def main() -> None:
         input_text = s.input.strip() if isinstance(s.input, str) else None
         narrations = [m.text for m in s.messages
                       if m.role == "user" and m.text.strip() != input_text]
-        players = [m.text for m in s.messages if m.role == "assistant"]
+        players = [m for m in s.messages if m.role == "assistant"]
 
         lines = [f"# {s.id}",
                  f"solvable={gl.get('solvable')}  terminal={gl.get('terminal')}  "
@@ -76,8 +90,19 @@ def main() -> None:
 
         for k, player in enumerate(players):
             lines.append(f"## Turn {k + 1}")
+            # F12 (2026-07-08): thinking-model reasoning lives in a
+            # ContentReasoning part of message.content, NOT in m.text (which is
+            # the ContentText/visible move) and NOT in m.reasoning (a false
+            # negative on this inspect_ai version). Rendering only m.text
+            # silently dropped GLM's multi-KB reasoning trace from every
+            # transcript — the exact forensic layer Reading 4 depended on.
+            reasoning = _reasoning_of(player)
+            if reasoning:
+                lines.append("**Player (reasoning):**")
+                lines.append(reasoning.strip())
+                lines.append("")
             lines.append("**Player:**")
-            lines.append(player.strip())
+            lines.append(player.text.strip())
             if k < len(ops):
                 lines.append("")
                 lines.append(f"**Engine:** {op_annotation(ops[k])}")
