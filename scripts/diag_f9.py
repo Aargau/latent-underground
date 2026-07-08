@@ -37,6 +37,7 @@ def dump_ops(logdir: str, n: int = 2) -> None:
 
 
 if __name__ == "__main__":
-    rej_rate("logs/validation-f8")
-    rej_rate("logs/glm-overnight-f8")
-    dump_ops("logs/glm-overnight-f8")
+    dirs = sys.argv[1:] or ["logs/validation-f8", "logs/glm-overnight-f8"]
+    for d in dirs:
+        rej_rate(d)
+    dump_ops(dirs[-1], n=4)

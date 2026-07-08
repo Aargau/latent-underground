@@ -20,6 +20,14 @@ class OpName(str, Enum):
     COMMIT = "COMMIT"
     MARK = "MARK"
     HALT = "HALT"
+    # F11 (2026-07-07): the interpreter's explicit "I cannot map this" — an
+    # action present but underspecified (a move with no destination), or no
+    # action at all. DISTINCT from a genuine parse failure (garbage output):
+    # UNMAPPABLE is the interpreter working correctly and declining to
+    # fabricate; it is honest friction, NOT a harness fault, and must not
+    # count toward the F9 starvation breaker. The abstain-vs-fabricate split
+    # between interpreter families lives on exactly this token.
+    UNMAPPABLE = "UNMAPPABLE"
 
 
 class Site(BaseModel):

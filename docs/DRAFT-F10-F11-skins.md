@@ -41,8 +41,43 @@ to yield" (T8, T12 — yield-adjacent).
 
 ## F11 — interpreter + engine changes
 
+**F11-0. APPLIED 2026-07-07 (not awaiting review — it blocked the remote-DM
+cell). Underspecified-action friction: the UNMAPPABLE / unparseable split.**
+
+Discovered live: Haiku-as-interpreter tripped the F9 breaker on a WORKING
+run. Root cause: qwen-player produced vague commits ("I step toward the
+current's pull" — a move naming no site) because the whole harness had been
+tuned around qwen-interpreter's habit of FABRICATING a plausible destination.
+Haiku correctly refused to invent the site and emitted `{}`, which the old
+parser collapsed into `unparseable_proposal` — indistinguishable from garbage
+— so five honest declines read as a starvation storm and the breaker (rightly,
+on its information) stopped the run.
+
+Fix (state.py, ops.py, engine.py, task.py, dm_interpreter.md):
+- `OpName.UNMAPPABLE` — the interpreter's explicit "cannot map."
+- parse_proposal returns `OpProposal(op=UNMAPPABLE)` for the explicit token,
+  `None` only for genuine garbage.
+- engine renders ontology friction ("say where, or what, to act upon") and
+  logs `unmappable_action`, DISTINCT from `unparseable_proposal`.
+- F9 breaker counts genuine `None` only; UNMAPPABLE resets the streak and is
+  excluded from the rate denominator. Vague-commit runs can no longer trip it.
+- interpreter prompt: a required-argument-missing action → UNMAPPABLE, never
+  a guessed value ("naming a place the player did not name is fabrication").
+
+THE FINDING (banked `interpreter-fabricate-vs-abstain`): interpreter families
+have a fabricate-vs-abstain disposition on underspecified input — qwen invents
+(its 1.0-confidence habit), Haiku abstains (also declined to impute confidence
+in smoke where qwen wrote 1.0). This is the same construct the program
+measures, now in the DM seat, and it is a CONFOUND for the crossed design: a
+narrator-effect contrast run with qwen-DM vs Haiku-DM also varies
+fabricate-vs-abstain unless the interpreter is held constant. Implication for
+the skin runs: hold the INTERPRETER family fixed across skins; vary only the
+narrator, or measure the interpreter axis deliberately as its own factor.
+
 **F11a. Interpreter: in-fiction actions are COMMIT-with-action, never
-inferred movement.** (dm_interpreter.md)
+inferred movement.** (dm_interpreter.md) [still proposed — F11-0 handles the
+missing-argument case; F11a handles the object-action-mistranslation case
+(lever→move) and remains for review.]
 > If the player performs an action on an object ("I pull the lever," "I open
 > the folio"), propose `{"action": "<verb phrase>", "target": "<object>"}` at
 > the player's current site. NEVER translate an object-action into movement

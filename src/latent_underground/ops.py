@@ -27,9 +27,18 @@ class OpProposal(BaseModel):
 
 
 def parse_proposal(raw: str) -> Optional[OpProposal]:
-    """Tolerant parse of the interpreter's JSON output."""
+    """Tolerant parse of the interpreter's JSON output.
+
+    Three outcomes: an OpProposal (parsed), OpProposal(op=UNMAPPABLE) (the
+    interpreter EXPLICITLY declined — friction, not fault), or None (genuine
+    parse failure — the only outcome the F9 breaker counts). Separating the
+    explicit decline from garbage is F11 (2026-07-07): Haiku correctly
+    emitted {} for underspecified commits ('step toward the pull' — a move
+    with no site) rather than fabricating a destination, and the old code
+    collapsed that into unparseable_proposal, tripping the breaker on a
+    WORKING interpreter."""
     if "UNMAPPABLE" in raw:
-        return None
+        return OpProposal(op=OpName.UNMAPPABLE)
     match = re.search(r"\{.*\}", raw, re.DOTALL)
     if not match:
         return None

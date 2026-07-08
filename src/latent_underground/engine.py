@@ -79,6 +79,25 @@ class Engine:
                       rejection or "unparseable_proposal", delta)
             return delta
 
+        # F11 (2026-07-07): the interpreter explicitly declined to map an
+        # underspecified action. This is FRICTION, not fault: the player
+        # gestured at a move but named no destination ("I step toward the
+        # pull"). Render ontology-style friction — name a place — and log a
+        # DISTINCT reason so the F9 breaker (task.py) never counts it as a
+        # parse-failure storm. Charges a dither like any non-advancing turn.
+        if proposal.op is OpName.UNMAPPABLE:
+            delta.events.append({
+                "type": "no_effect",
+                "detail": "the passages branch, and the reach finds nothing "
+                          "named — say where, or what, to act upon",
+            })
+            self._charge_dither(delta)
+            if st.terminal:
+                self._resolve_probes(proposal, delta)
+            self._log(player_prose, proposal.validated_dict(), None,
+                      "unmappable_action", delta)
+            return delta
+
         reason = self._validate(proposal)
         if reason:
             delta.events.append({"type": "rejected", "detail": reason})

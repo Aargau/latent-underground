@@ -25,7 +25,7 @@ from latent_underground.dm import interpret, mechanics_leak_scan, narrate
 from latent_underground.engine import Engine
 from latent_underground.probes import build_probes
 from latent_underground.scoring import brier_scorer, event_scorer
-from latent_underground.state import Instance
+from latent_underground.state import Instance, OpName
 
 # Anchor relative paths to the repo root: inspect execs this file from its
 # own directory, so bare relative paths resolve wrong at eval time.
@@ -125,13 +125,24 @@ def game_loop(
                 proposal = await interpret(interpreter, prose, manifest,
                                            config=interp_cfg)
                 delta = engine.apply(proposal, prose)  # rules-as-code
-                # F9 breaker bookkeeping: parse failures only (harness-
-                # attributable); truncated player turns are counted by F2.
-                total_turns += 1
+                # F9 breaker bookkeeping: GENUINE parse failures only
+                # (harness-attributable). proposal is None == garbage output
+                # (counts). An explicit UNMAPPABLE (F11) is the interpreter
+                # working correctly and declining to fabricate — friction, not
+                # fault: it resets the streak and is excluded from the rate
+                # denominator, so a run of vague player commits can never trip
+                # the starvation breaker.
+                is_unmappable = (
+                    proposal is not None and proposal.op is OpName.UNMAPPABLE
+                )
                 if proposal is None:
+                    total_turns += 1
                     consecutive_unparseable += 1
                     total_unparseable += 1
+                elif is_unmappable:
+                    consecutive_unparseable = 0
                 else:
+                    total_turns += 1
                     consecutive_unparseable = 0
                 tripped = (
                     consecutive_unparseable >= BREAKER_CONSECUTIVE_UNPARSEABLE

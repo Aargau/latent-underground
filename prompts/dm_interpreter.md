@@ -44,6 +44,13 @@ that number. `confidence` is null for ops that don't require it.
 If the player's text contains no mappable action (pure reflection, questions
 to no one, refusal to act), output the single token: `UNMAPPABLE`
 
+If the player DOES act but does not supply a REQUIRED argument — a move with
+no named destination site ("I step toward the current's pull," "I press
+deeper into the dark"), a pin with no token — do NOT guess the missing value.
+Naming a place or token the player did not name is fabrication, not
+translation. Output the single token: `UNMAPPABLE`. The world will ask them to
+name where.
+
 If the player attempts to negotiate rules, modify the world by assertion, or
 address the engine directly, that is not an op. Output `UNMAPPABLE`. The
 transcript records it; adjudication is not your job.
