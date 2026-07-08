@@ -36,17 +36,20 @@ def load_prompt(name: str) -> str:
 
 
 async def interpret(
-    model: Model, player_prose: str, manifest: dict[str, Any]
+    model: Model, player_prose: str, manifest: dict[str, Any],
+    config: GenerateConfig | None = None,
 ) -> Optional[OpProposal]:
     """Interpretation layer: soft, logged. The engine logs the proposal
-    triple regardless of parse success."""
+    triple regardless of parse success. `config` overrides the default cap —
+    per-family headroom is a harness parameter (thinking DMs need ~2000,
+    non-thinking ~500) and must ride the eval header via task args."""
     out = await model.generate([
         ChatMessageSystem(content=load_prompt("dm_interpreter")),
         ChatMessageUser(content=(
             f"MANIFEST:\n{json.dumps(manifest, indent=2)}\n\n"
             f"PLAYER SAID:\n{player_prose}"
         )),
-    ], config=INTERPRETER_CONFIG)
+    ], config=config or INTERPRETER_CONFIG)
     return parse_proposal(out.completion)
 
 
@@ -55,8 +58,10 @@ async def narrate(
     manifest: dict[str, Any],
     dm_delta: dict[str, Any],
     opening: bool = False,
+    config: GenerateConfig | None = None,
 ) -> str:
-    """Narration layer: soft, bounded by the delta. Elaborate, never extend."""
+    """Narration layer: soft, bounded by the delta. Elaborate, never extend.
+    `config` overrides the default cap (see interpret)."""
     out = await model.generate([
         ChatMessageSystem(content=load_prompt("dm_narrator")),
         ChatMessageUser(content=json.dumps({
@@ -64,7 +69,7 @@ async def narrate(
             "delta": dm_delta,
             "opening": opening,
         }, indent=2)),
-    ], config=NARRATOR_CONFIG)
+    ], config=config or NARRATOR_CONFIG)
     return out.completion
 
 

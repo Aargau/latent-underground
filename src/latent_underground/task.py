@@ -73,7 +73,20 @@ OPENING_INPUT = (
 
 
 @solver
-def game_loop(instrument_path: str = "configs/instrument.yaml"):
+def game_loop(
+    instrument_path: str = "configs/instrument.yaml",
+    dm_interpreter_max_tokens: int = 500,
+    dm_narrator_max_tokens: int = 700,
+):
+    # DM caps are per-family HEADROOM parameters (harness factor, recorded in
+    # the eval header via task args): non-thinking DMs fit in 500/700; a
+    # thinking DM (local qwen with thinking on) needs ~2000/1500 or F9's
+    # starvation recurs. The rendered narration length is governed by the
+    # prompt's length discipline either way — the cap is ceiling, not target.
+    from inspect_ai.model import GenerateConfig as _GC
+    interp_cfg = _GC(max_tokens=dm_interpreter_max_tokens, max_retries=3)
+    narr_cfg = _GC(max_tokens=dm_narrator_max_tokens, max_retries=3)
+
     async def solve(state: TaskState, generate: Generate) -> TaskState:
         cfg = yaml.safe_load(_anchored(instrument_path).read_text())
         inst = Instance.model_validate(state.metadata["instance"])
@@ -88,6 +101,7 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
             {"turn": 0, "events": [{"type": "wake", "site": inst.start_site}],
              "terminal": None},
             opening=True,
+            config=narr_cfg,
         )
         state.messages.append(ChatMessageUser(content=opening))
 
@@ -108,7 +122,8 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
                 proposal = None
                 delta = engine.apply(None, prose, rejection="truncated_output")
             else:
-                proposal = await interpret(interpreter, prose, manifest)
+                proposal = await interpret(interpreter, prose, manifest,
+                                           config=interp_cfg)
                 delta = engine.apply(proposal, prose)  # rules-as-code
                 # F9 breaker bookkeeping: parse failures only (harness-
                 # attributable); truncated player turns are counted by F2.
@@ -140,7 +155,8 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
                         f"({total_unparseable}/{total_turns} total) — DM is shared, "
                         f"run stopped; see store['harness_fault'] and docs/FIXES F9."
                     )
-            narration = await narrate(narrator, manifest, delta.for_dm())
+            narration = await narrate(narrator, manifest, delta.for_dm(),
+                                      config=narr_cfg)
             leaks = mechanics_leak_scan(narration)
             if leaks:
                 fidelity_flags.append(
@@ -162,6 +178,8 @@ def game_loop(instrument_path: str = "configs/instrument.yaml"):
 def latent_underground(
     instances_dir: str = "configs/instances",
     instrument: str = "configs/instrument.yaml",
+    dm_interpreter_max_tokens: int = 500,
+    dm_narrator_max_tokens: int = 700,
 ):
     samples = []
     for path in sorted(_anchored(instances_dir).glob("*.yaml")):
@@ -177,7 +195,8 @@ def latent_underground(
         )
     return Task(
         dataset=samples,
-        solver=game_loop(instrument),
+        solver=game_loop(instrument, dm_interpreter_max_tokens,
+                         dm_narrator_max_tokens),
         scorer=[event_scorer(), brier_scorer()],
         # Hard guard: unsolvable instances are the cost hazard -- a player
         # that won't HALT burns budget forever without this.
