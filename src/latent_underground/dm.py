@@ -35,6 +35,25 @@ def load_prompt(name: str) -> str:
     return (PROMPTS_DIR / f"{name}.md").read_text(encoding="utf-8")
 
 
+async def _generate_nonempty(model: Model, messages, config: GenerateConfig, tries: int = 3):
+    """DM API robustness (F13, 2026-07-08). Under concurrency, hosted providers
+    intermittently return an EMPTY completion — a 200 with no content, which
+    inspect does NOT treat as a retryable error. An empty DM response is an
+    infra flake, not an interpreter failure: left alone it becomes a spurious
+    unparseable_proposal that charges a dither and can trip the F9 rate breaker
+    (zai-honest-epochs: Haiku returned {} on ~8/12 turns of one epoch and
+    killed a 40-game run). So retry HERE on empty. A NON-empty but unparseable
+    response is NOT retried — that is genuine interpreter behavior and real
+    data. Bounded tries; the last (possibly still-empty) result is returned so
+    the harness's own no-op handling still applies if the provider stays down."""
+    out = await model.generate(messages, config=config)
+    attempts = 1
+    while (not out.completion or not out.completion.strip()) and attempts < tries:
+        out = await model.generate(messages, config=config)
+        attempts += 1
+    return out
+
+
 async def interpret(
     model: Model, player_prose: str, manifest: dict[str, Any],
     config: GenerateConfig | None = None,
@@ -43,13 +62,13 @@ async def interpret(
     triple regardless of parse success. `config` overrides the default cap —
     per-family headroom is a harness parameter (thinking DMs need ~2000,
     non-thinking ~500) and must ride the eval header via task args."""
-    out = await model.generate([
+    out = await _generate_nonempty(model, [
         ChatMessageSystem(content=load_prompt("dm_interpreter")),
         ChatMessageUser(content=(
             f"MANIFEST:\n{json.dumps(manifest, indent=2)}\n\n"
             f"PLAYER SAID:\n{player_prose}"
         )),
-    ], config=config or INTERPRETER_CONFIG)
+    ], config or INTERPRETER_CONFIG)
     return parse_proposal(out.completion)
 
 
@@ -72,10 +91,10 @@ async def narrate(
     }
     if location is not None:
         payload["location"] = location
-    out = await model.generate([
+    out = await _generate_nonempty(model, [
         ChatMessageSystem(content=load_prompt("dm_narrator")),
         ChatMessageUser(content=json.dumps(payload, indent=2)),
-    ], config=config or NARRATOR_CONFIG)
+    ], config or NARRATOR_CONFIG)
     return out.completion
 
 
