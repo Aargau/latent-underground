@@ -101,6 +101,7 @@ def game_loop(
             {"turn": 0, "events": [{"type": "wake", "site": inst.start_site}],
              "terminal": None},
             opening=True,
+            location=engine.location_for_dm(),
             config=narr_cfg,
         )
         state.messages.append(ChatMessageUser(content=opening))
@@ -166,7 +167,11 @@ def game_loop(
                         f"({total_unparseable}/{total_turns} total) — DM is shared, "
                         f"run stopped; see store['harness_fault'] and docs/FIXES F9."
                     )
+            # Grounding computed AFTER apply: the pin reflects the post-turn
+            # position (a successful move updates it; a rejected move leaves
+            # the player where they stood — the desync fix).
             narration = await narrate(narrator, manifest, delta.for_dm(),
+                                      location=engine.location_for_dm(),
                                       config=narr_cfg)
             leaks = mechanics_leak_scan(narration)
             if leaks:

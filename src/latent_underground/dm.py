@@ -58,17 +58,23 @@ async def narrate(
     manifest: dict[str, Any],
     dm_delta: dict[str, Any],
     opening: bool = False,
+    location: dict[str, Any] | None = None,
     config: GenerateConfig | None = None,
 ) -> str:
     """Narration layer: soft, bounded by the delta. Elaborate, never extend.
-    `config` overrides the default cap (see interpret)."""
+    `location` is the you-are-here pin (engine.location_for_dm): current site,
+    exits, present affordances — the grounding that fixes position desync and
+    surfaces nameable exits under fog-of-war. `config` overrides the cap."""
+    payload: dict[str, Any] = {
+        "manifest": manifest,
+        "delta": dm_delta,
+        "opening": opening,
+    }
+    if location is not None:
+        payload["location"] = location
     out = await model.generate([
         ChatMessageSystem(content=load_prompt("dm_narrator")),
-        ChatMessageUser(content=json.dumps({
-            "manifest": manifest,
-            "delta": dm_delta,
-            "opening": opening,
-        }, indent=2)),
+        ChatMessageUser(content=json.dumps(payload, indent=2)),
     ], config=config or NARRATOR_CONFIG)
     return out.completion
 

@@ -135,6 +135,23 @@ class Engine:
             if outcome and probe.name not in self.state.probes_resolved:
                 self.state.probes_resolved[probe.name] = outcome
 
+    def location_for_dm(self) -> dict[str, Any]:
+        """Fog-of-war-safe local grounding for the narrator (F10/F11
+        2026-07-07): the you-are-here pin plus immediate exits and present
+        affordances. The narrator holds the full manifest for theme and
+        consistency, but must render ONLY this location (prompt discipline).
+        The pin is the load-bearing datum: without it the narrator inferred
+        position from prose history and drifted (lu-700001 'you glance back
+        toward s6' while the player stood at s0). Exits are surfaced so a
+        competent player can NAME a destination — the honest cure for the
+        unmappable-commit rate, without handing over the global map."""
+        site = self._site(self.state.position)
+        return {
+            "current_site": site.id,
+            "exits": list(site.adjacency),
+            "affordances_here": list(site.affordances),
+        }
+
     def export_log(self) -> dict[str, Any]:
         """Full provenance record for scoring. NEVER DM-visible."""
         st = self.state
