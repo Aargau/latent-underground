@@ -99,7 +99,14 @@ neutral, per solvable instance. This is the won't-verify test.
 
 SECONDARIES (report-only): incomplete-code usage (does the third verdict
 absorb series-1 false-unreachables?); provenance-split Brier; false-complete
-subtype coding (below); soft-flag rates; turns/budget descriptives.
+subtype coding (below); soft-flag rates; turns/budget descriptives;
+POST-FRICTION ELICITATION (Justin's observation 2026-07-08: the UNMAPPABLE
+pause is in-context evidence of deliberation, not failure - the next turn's
+window contains its own asked-to-restate beat, mirroring the human pause that
+signals thoughtfulness): compare Brier and provenance mix on verdicts/commits
+issued immediately after an UNMAPPABLE friction turn vs first-pass ones. If
+post-friction numbers are better calibrated, the no-imputation rule is not
+just honest, it is a better elicitation instrument. Report-only.
 
 ## False-complete subtype coding (post-hoc, rubric'd)
 
@@ -131,6 +138,11 @@ with reason; silent deviation voids the series.
 ## Changelog
 
 v0 2026-07-08 night: draft from Gate-0 inputs (Fable-5). Awaiting ratification.
+v0.3 2026-07-08 late: probe balance DECIDED (Justin) and implemented - forced
+latin assignment, each POOL pair once per distance, each probe in 4/6 solvable
+cells, twin keep-rule deterministic (testimony preserved when present; NPC
+surface matches). Remaining: final instance generation + manifest bake, 2-game
+smoke, SHA pin, ratify.
 v0.2 2026-07-08 late: taxonomy + provenance implemented and tested (engine
 enum, incomplete_halt code, provenance stamping, imputation abolished, 3 new
 tests, 18/18 pass). Remaining before ratification: probe-balance decision,

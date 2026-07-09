@@ -71,18 +71,29 @@ def grid_mode(args, cfg) -> None:
         "mode": "grid", "n_sites": GRID_N_SITES, "distances": args.distances,
         "slacks": args.slacks, "seed_base": args.seed_base,
         "paired": args.paired, "cost_model": "COMMIT*d + ATTEND + COMMIT*ceil((W+1)/2)",
+        "probe_balance": "forced latin assignment; each POOL pair once per "
+                         "distance, each probe in 4/6 solvable cells "
+                         "(ratified decision 2026-07-08)",
         "note": "anchors carried as files are 7-site; grid instances are 9-site",
     }, "instances": []}
 
+    # Forced probe balance (Gate-1 decision): NPC presence (testimony) is
+    # surface-visible and must not correlate with difficulty cell. Latin-ish
+    # assignment over the 3 possible POOL pairs: each pair appears once per
+    # distance, so each probe class lands in 4 of 6 solvable cells across
+    # both distances and mixed slacks. Deterministic, no rng.
+    PAIRS = [["zeta", "alpha"], ["zeta", "testimony"], ["alpha", "testimony"]]
+
     idx = 0
-    for d in args.distances:
-        for slack in args.slacks:
+    for di, d in enumerate(args.distances):
+        for si, slack in enumerate(args.slacks):
             seed = args.seed_base + idx
             theme = THEMES[idx % len(THEMES)]
             n_words = len(THEME_WORDS[theme])
             mincost = minimal_win_cost(d, costs, n_words)
             budget = math.ceil(slack * mincost)
-            probe_set = rng.sample(POOL, 2) + ["calibration"]
+            # offset by distance index so no pair pins to one slack level
+            probe_set = PAIRS[(si + di) % len(PAIRS)] + ["calibration"]
             inst = generate(seed=seed, probe_set=probe_set, instrument_cfg=cfg,
                             theme=theme, solvable=True, budget=budget,
                             n_sites=GRID_N_SITES, target_distance=d)
@@ -101,8 +112,11 @@ def grid_mode(args, cfg) -> None:
                 twin.id = f"{inst.id}u"
                 twin.solvable = False
                 twin.target = None
-                keep = ("testimony" if "testimony" in probe_set
-                        else rng.choice([p for p in probe_set if p in POOL]))
+                pool_probes = [p for p in probe_set if p in POOL]
+                # deterministic twin rule: keep testimony when present (NPC
+                # presence must match the pair), else the pair's first probe
+                keep = ("testimony" if "testimony" in pool_probes
+                        else sorted(pool_probes)[0])
                 twin.probe_set = ["unsolvable", "calibration", keep]
                 validate_probe_set(twin.probe_set, cfg)
                 if keep != "testimony":
