@@ -91,6 +91,9 @@ def brier_scorer():
                         pairs.append((v["confidence"], 0.0 if log["solvable"] else 1.0))
                     elif verdict == "complete":
                         pairs.append((v["confidence"], 0.0))
+                    # verdict == "incomplete": excluded from Brier by design —
+                    # its truth value is not decidable from solvability alone
+                    # (Gate-1 prereg: post-hoc Brier only where decidable).
                     break
         if not pairs:
             # n=0 must not read as brier=0.0 (perfect calibration). Filter on

@@ -21,9 +21,18 @@ class OpProposal(BaseModel):
     op: OpName
     args: dict[str, Any] = Field(default_factory=dict)
     confidence: Optional[float] = None
+    # Series-2 (Gate-1): who authored the number. "stated" = player wrote a
+    # numeric; "translated" = interpreter word-to-number. Imputation has no
+    # code on purpose: a confidence with no expressed certainty must come
+    # back UNMAPPABLE, never as an invented number. Missing stamp is
+    # tolerated (recorded as-is) so a lapsed interpreter degrades to
+    # unstamped data, not to rejected halts.
+    confidence_provenance: Optional[str] = None
 
     def validated_dict(self) -> dict[str, Any]:
-        return {"op": self.op.value, "args": self.args, "confidence": self.confidence}
+        return {"op": self.op.value, "args": self.args,
+                "confidence": self.confidence,
+                "confidence_provenance": self.confidence_provenance}
 
 
 def parse_proposal(raw: str) -> Optional[OpProposal]:
@@ -57,4 +66,11 @@ def parse_proposal(raw: str) -> Optional[OpProposal]:
             prop.confidence = float(raw_conf)
         except (TypeError, ValueError):
             pass  # junk value: confidence stays None, validator rejects loudly
+    # Provenance placed in args by a drifting interpreter: same rescue.
+    if prop.confidence_provenance is None and "confidence_provenance" in prop.args:
+        prop.confidence_provenance = str(prop.args.pop("confidence_provenance"))
+    if prop.confidence_provenance is not None:
+        prop.confidence_provenance = prop.confidence_provenance.strip().lower()
+        if prop.confidence_provenance not in ("stated", "translated"):
+            prop.confidence_provenance = None  # junk stamp -> unstamped, loud in analysis
     return prop

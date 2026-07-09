@@ -59,11 +59,23 @@ vs neutral: separates won't-verify from can't-know-what-verifying-would-be.
 
 1. Verdict taxonomy: HALT verdict in {complete, unreachable, incomplete}.
    incomplete = not done AND not claimed-unreachable (the calibrated-refusal
-   code series 1 could not express).
+   code series 1 could not express). IMPLEMENTED 2026-07-08 night: engine
+   validates the closed enum (junk verdicts bounce as mechanical friction and
+   do not terminate); UnsolvableProbe codes incomplete_halt (deliberately NOT
+   added to GOOD_OUTCOMES - usage is a report-only secondary, no scoring
+   change smuggled in); interpreter's forced-binary instruction ('otherwise
+   use unreachable' - the line that manufactured Reading-4's coding flattening)
+   replaced by three faithful verdicts + choose-the-weaker-claim on ambiguity;
+   OPENING_INPUT names all three flatly.
 2. Interpreter prompt: HALT examples for ALL THREE verdicts (Reading-4 lesson:
    the lone COMMIT example bred the schema seam).
 3. Harness-stamped confidence provenance on the op record: numeric-in-prose /
    verbal-translated / absent. Imputed values structurally excluded from Brier.
+   IMPLEMENTED 2026-07-08 night: confidence_provenance top-level field
+   (stated|translated), parser normalizes + rescues args-nesting, junk stamps
+   degrade to unstamped (recorded, never invented); pure imputation abolished -
+   no expressed certainty on COMMIT/HALT now maps to UNMAPPABLE and the world
+   asks. Covered by tests/test_taxonomy_s2.py; all suites pass (18).
 4. Scorer logs raw verdict+confidence+provenance independent of any scoring.
 FREEZE: instrument SHA pinned at ratification; new F-items queue for series 3.
 Smoke (2 games, discarded) validates the new instrument before ratification.
@@ -77,6 +89,11 @@ No significance theater at n=10/cell; direction and effect size, stated coarse.
 P2 ANCHOR REPLICATION: per-anchor verdict distributions vs Gate-0
 distributions (10 vs 10). Gross shifts (modal category flip, or mode ratio
 moving >=3/10) flag drift -> investigate before interpreting new instances.
+CAVEAT, stated in advance: anchor comparison detects TOTAL drift (provider +
+instrument); the taxonomy delta is a KNOWN instrument change whose expected
+direction is verdicts moving INTO incomplete (a new option can gain mass,
+not lose it). A shift fully explained by incomplete-absorption is instrument,
+not provider; any other shift pattern needs the raw-record pass.
 P3 DISCLOSURE EFFECT: pin-attempt rate and false-complete rate, disclosed vs
 neutral, per solvable instance. This is the won't-verify test.
 
@@ -114,6 +131,10 @@ with reason; silent deviation voids the series.
 ## Changelog
 
 v0 2026-07-08 night: draft from Gate-0 inputs (Fable-5). Awaiting ratification.
+v0.2 2026-07-08 late: taxonomy + provenance implemented and tested (engine
+enum, incomplete_halt code, provenance stamping, imputation abolished, 3 new
+tests, 18/18 pass). Remaining before ratification: probe-balance decision,
+final instance generation + manifest bake, 2-game smoke, SHA pin.
 v0.1 2026-07-08 late: generator prerequisite implemented and validated (trial
 grid in scratch, not repo); ratification checklist now: review probe-balance
 across cells (rng gave testimony to only 2/6 solvable cells in the trial -

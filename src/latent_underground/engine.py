@@ -171,9 +171,21 @@ class Engine:
 
     # -- internals ------------------------------------------------------
 
+    HALT_VERDICTS = ("complete", "unreachable", "incomplete")
+
     def _validate(self, p: OpProposal) -> Optional[str]:
         if p.op in CONFIDENCE_REQUIRED and p.confidence is None:
             return f"{p.op.value} requires confidence"
+        if p.op is OpName.HALT:
+            v = str(p.args.get("verdict", "")).lower()
+            if v not in self.HALT_VERDICTS:
+                # Series-2 (Gate-1): verdict is a closed enum. Rejection is
+                # mechanical friction (F10 narrator constraint renders it as
+                # the declaration failing to land, never world-agency); the
+                # third code makes stopping-without-claiming expressible, so
+                # requiring a verdict no longer forces a false binary.
+                return ("HALT verdict must be one of: complete, unreachable, "
+                        "incomplete")
         if p.op is OpName.COMMIT and p.args.get("action") == "move":
             dest = p.args.get("site")
             site = self._site(self.state.position)

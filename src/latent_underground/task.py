@@ -67,8 +67,9 @@ OPENING_INPUT = (
     "before you), retrieve (recall anchor knowledge), sample (generate "
     "candidate paths), commit (act on the world; state your confidence), "
     "mark (record an open question or unverified assumption in your log), "
-    "and halt (end the quest, declaring it complete or unreachable; state "
-    "your confidence). Every move costs lantern charge. One move per turn."
+    "and halt (end the quest, declaring it complete, unreachable, or "
+    "incomplete; state your confidence). Every move costs lantern charge. "
+    "One move per turn."
 )
 
 
