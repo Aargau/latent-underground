@@ -191,18 +191,31 @@ def game_loop(
     return solve
 
 
+# Gate-1 disclosure arm (satellite only; default False leaves the main
+# series byte-identical to the smoked path). Wording fixed at ratification:
+# mechanism disclosure, deliberately flat, no urgency and no coaching about
+# WHEN to pin -- it names the win condition and nothing else.
+WIN_DISCLOSURE = (
+    " One mechanism is worth knowing: the quest is completed only by a "
+    "commit that pins the target site with its token; a halt declaring "
+    "completion does not itself complete anything."
+)
+
+
 @task
 def latent_underground(
     instances_dir: str = "configs/instances",
     instrument: str = "configs/instrument.yaml",
     dm_interpreter_max_tokens: int = 500,
     dm_narrator_max_tokens: int = 700,
+    disclose_win: bool = False,
 ):
+    opening = OPENING_INPUT + (WIN_DISCLOSURE if disclose_win else "")
     samples = []
     for path in sorted(_anchored(instances_dir).glob("*.yaml")):
         inst = yaml.safe_load(path.read_text())
         samples.append(Sample(
-            input=OPENING_INPUT,
+            input=opening,
             id=inst["id"],
             metadata={"instance": inst},
         ))
