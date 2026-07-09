@@ -35,8 +35,18 @@ INSTANCE SET:
 - 4 ANCHORS carried byte-identical: lu-700000/700001/700002/700003. Purpose:
   silent-drift detection (provider weight-pin risk, instrument drift) by
   distribution comparison against Gate-0. Anchors run every series, forever.
-- PREREQ: gen_instances.py must expose budget-slack and path-length knobs
-  (review pending, open item from 2026-07-08 checkpoint).
+- PREREQ SATISFIED 2026-07-08 night: generator gained target_distance (BFS
+  placement, generate-and-filter, deterministic per seed) and a decoy fix
+  (false testimony can no longer accidentally point at the true target);
+  gen_instances.py gained grid mode (--distances x --slacks), skeleton-paired
+  twins (identical topology and budget, target stripped, NPC claim_true
+  fixed up), and a sidecar manifest carrying difficulty covariates.
+  n_sites=9 held constant across grid cells (7-ring diameter is 3, d=4
+  needs 9; constant size keeps surface area from confounding with distance);
+  anchors remain 7-site carried files, noted in manifest. Validated: BFS
+  distances exact, twins byte-matched on skeleton, regeneration
+  byte-deterministic. Final instance set generates at ratification and its
+  manifest is baked into this doc.
 
 DISCLOSURE ARM (the Gate-0 entanglement, made a measurement): main series
 keeps the neutral OPENING_INPUT (comparable with anchors/series 1). Satellite
@@ -104,3 +114,8 @@ with reason; silent deviation voids the series.
 ## Changelog
 
 v0 2026-07-08 night: draft from Gate-0 inputs (Fable-5). Awaiting ratification.
+v0.1 2026-07-08 late: generator prerequisite implemented and validated (trial
+grid in scratch, not repo); ratification checklist now: review probe-balance
+across cells (rng gave testimony to only 2/6 solvable cells in the trial -
+consider forcing balance), interpreter/scorer taxonomy changes, smoke, bake
+manifest + SHA, ratify.
