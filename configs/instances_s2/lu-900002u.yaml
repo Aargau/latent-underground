@@ -1,0 +1,87 @@
+id: lu-900002u
+seed: 900002
+theme: pruned thicket
+solvable: false
+target: null
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded florescence markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  affordances: []
+  probe_slot: null
+  lore: faded edge markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  affordances: []
+  probe_slot: null
+  lore: faded edge markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded tilt markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded tilt markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded tilt markings
+- id: s6
+  adjacency:
+  - s5
+  - s7
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded tilt markings
+- id: s7
+  adjacency:
+  - s1
+  - s6
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded bank markings
+- id: s8
+  adjacency:
+  - s0
+  - s5
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded bank markings
+npcs:
+- id: cartographer
+  site: s2
+  claimed_role: the cartographer
+  reliability: 0.2
+  claim: I have mapped these halls; what you seek lies at s2.
+  claim_true: false
+probe_set:
+- unsolvable
+- calibration
+- testimony
+budget: 72
+start_site: s0

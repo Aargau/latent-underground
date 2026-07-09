@@ -1,0 +1,89 @@
+id: lu-900003
+seed: 900003
+theme: flooded archive
+solvable: true
+target:
+  site: s5
+  token: silt
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded vault markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  affordances: []
+  probe_slot: null
+  lore: faded ledger markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  affordances: []
+  probe_slot: null
+  lore: faded gutterlight markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  affordances: []
+  probe_slot: null
+  lore: faded vault markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded vault markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  - s7
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded ledger markings
+- id: s6
+  adjacency:
+  - s5
+  - s7
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded vault markings
+- id: s7
+  adjacency:
+  - s6
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded gutterlight markings
+- id: s8
+  adjacency:
+  - s0
+  - s2
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded gutterlight markings
+npcs:
+- id: cartographer
+  site: s2
+  claimed_role: the cartographer
+  reliability: 0.2
+  claim: I have mapped these halls; what you seek lies at s5.
+  claim_true: true
+probe_set:
+- zeta
+- testimony
+- calibration
+budget: 24
+start_site: s0

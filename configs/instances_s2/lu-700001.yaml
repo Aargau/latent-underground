@@ -1,0 +1,67 @@
+id: lu-700001
+seed: 700001
+theme: pruned thicket
+solvable: false
+target: null
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded reserve markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded tilt markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  affordances: []
+  probe_slot: null
+  lore: faded edge markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded edge markings
+- id: s4
+  adjacency:
+  - s0
+  - s3
+  - s5
+  affordances: []
+  probe_slot: null
+  lore: faded florescence markings
+- id: s5
+  adjacency:
+  - s0
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded tilt markings
+- id: s6
+  adjacency:
+  - s0
+  - s5
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded edge markings
+npcs: []
+probe_set:
+- unsolvable
+- calibration
+- zeta
+budget: 40
+start_site: s0

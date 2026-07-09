@@ -1,0 +1,89 @@
+id: lu-900004
+seed: 900004
+theme: underground river
+solvable: true
+target:
+  site: s5
+  token: shoal
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded murk markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded eddy markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  - s4
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded caisson markings
+- id: s3
+  adjacency:
+  - s1
+  - s2
+  - s4
+  affordances: []
+  probe_slot: null
+  lore: faded eddy markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded shoal markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded murk markings
+- id: s6
+  adjacency:
+  - s5
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded shoal markings
+- id: s7
+  adjacency:
+  - s6
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s8
+  adjacency:
+  - s0
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded murk markings
+npcs:
+- id: cartographer
+  site: s2
+  claimed_role: the cartographer
+  reliability: 0.2
+  claim: I have mapped these halls; what you seek lies at s7.
+  claim_true: false
+probe_set:
+- alpha
+- testimony
+- calibration
+budget: 48
+start_site: s0

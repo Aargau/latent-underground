@@ -1,0 +1,81 @@
+id: lu-900000u
+seed: 900000
+theme: flooded archive
+solvable: false
+target: null
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s4
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded sluice markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  - s7
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded silt markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  affordances: []
+  probe_slot: null
+  lore: faded silt markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  affordances: []
+  probe_slot: null
+  lore: faded ledger markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  affordances: []
+  probe_slot: null
+  lore: faded sluice markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded vault markings
+- id: s6
+  adjacency:
+  - s5
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded silt markings
+- id: s7
+  adjacency:
+  - s6
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded ledger markings
+- id: s8
+  adjacency:
+  - s0
+  - s1
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded silt markings
+npcs: []
+probe_set:
+- unsolvable
+- calibration
+- alpha
+budget: 18
+start_site: s0

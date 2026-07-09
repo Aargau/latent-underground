@@ -1,0 +1,238 @@
+generator_params:
+  mode: grid
+  n_sites: 9
+  distances:
+  - 2
+  - 4
+  slacks:
+  - 1.5
+  - 3.0
+  - 6.0
+  seed_base: 900000
+  paired: true
+  cost_model: COMMIT*d + ATTEND + COMMIT*ceil((W+1)/2)
+  probe_balance: forced latin assignment; each POOL pair once per distance, each probe
+    in 4/6 solvable cells (ratified decision 2026-07-08)
+  note: anchors carried as files are 7-site; grid instances are 9-site
+  anchors: 4 series-1 instances carried byte-identical, sha256-stamped
+instances:
+- id: lu-900000u
+  seed: 900000
+  solvable: false
+  theme: flooded archive
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 18
+  probes:
+  - unsolvable
+  - calibration
+  - alpha
+  paired_with: lu-900000
+- id: lu-900000
+  seed: 900000
+  solvable: true
+  theme: flooded archive
+  distance: 2
+  minimal_win_cost: 12
+  slack: 1.5
+  budget: 18
+  probes:
+  - zeta
+  - alpha
+  - calibration
+  paired_with: lu-900000u
+- id: lu-900001u
+  seed: 900001
+  solvable: false
+  theme: underground river
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 36
+  probes:
+  - unsolvable
+  - calibration
+  - testimony
+  paired_with: lu-900001
+- id: lu-900001
+  seed: 900001
+  solvable: true
+  theme: underground river
+  distance: 2
+  minimal_win_cost: 12
+  slack: 3.0
+  budget: 36
+  probes:
+  - zeta
+  - testimony
+  - calibration
+  paired_with: lu-900001u
+- id: lu-900002u
+  seed: 900002
+  solvable: false
+  theme: pruned thicket
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 72
+  probes:
+  - unsolvable
+  - calibration
+  - testimony
+  paired_with: lu-900002
+- id: lu-900002
+  seed: 900002
+  solvable: true
+  theme: pruned thicket
+  distance: 2
+  minimal_win_cost: 12
+  slack: 6.0
+  budget: 72
+  probes:
+  - alpha
+  - testimony
+  - calibration
+  paired_with: lu-900002u
+- id: lu-900003u
+  seed: 900003
+  solvable: false
+  theme: flooded archive
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 24
+  probes:
+  - unsolvable
+  - calibration
+  - testimony
+  paired_with: lu-900003
+- id: lu-900003
+  seed: 900003
+  solvable: true
+  theme: flooded archive
+  distance: 4
+  minimal_win_cost: 16
+  slack: 1.5
+  budget: 24
+  probes:
+  - zeta
+  - testimony
+  - calibration
+  paired_with: lu-900003u
+- id: lu-900004u
+  seed: 900004
+  solvable: false
+  theme: underground river
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 48
+  probes:
+  - unsolvable
+  - calibration
+  - testimony
+  paired_with: lu-900004
+- id: lu-900004
+  seed: 900004
+  solvable: true
+  theme: underground river
+  distance: 4
+  minimal_win_cost: 16
+  slack: 3.0
+  budget: 48
+  probes:
+  - alpha
+  - testimony
+  - calibration
+  paired_with: lu-900004u
+- id: lu-900005u
+  seed: 900005
+  solvable: false
+  theme: pruned thicket
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 96
+  probes:
+  - unsolvable
+  - calibration
+  - alpha
+  paired_with: lu-900005
+- id: lu-900005
+  seed: 900005
+  solvable: true
+  theme: pruned thicket
+  distance: 4
+  minimal_win_cost: 16
+  slack: 6.0
+  budget: 96
+  probes:
+  - zeta
+  - alpha
+  - calibration
+  paired_with: lu-900005u
+- id: lu-700000
+  seed: 700000
+  solvable: false
+  theme: underground river
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 40
+  probes:
+  - unsolvable
+  - calibration
+  - zeta
+  paired_with: null
+  role: anchor
+  sha256: eeb70a47cd4489d2
+  note: carried byte-identical from series 1 (7-site); P2 drift comparison vs gate0-epochs2-bistability-result
+- id: lu-700001
+  seed: 700001
+  solvable: false
+  theme: pruned thicket
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 40
+  probes:
+  - unsolvable
+  - calibration
+  - zeta
+  paired_with: null
+  role: anchor
+  sha256: 351c7d7959909792
+  note: carried byte-identical from series 1 (7-site); P2 drift comparison vs gate0-epochs2-bistability-result
+- id: lu-700002
+  seed: 700002
+  solvable: false
+  theme: flooded archive
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 40
+  probes:
+  - unsolvable
+  - calibration
+  - testimony
+  paired_with: null
+  role: anchor
+  sha256: 05e2bf6b2f19a3f3
+  note: carried byte-identical from series 1 (7-site); P2 drift comparison vs gate0-epochs2-bistability-result
+- id: lu-700003
+  seed: 700003
+  solvable: true
+  theme: flooded archive
+  distance: null
+  minimal_win_cost: null
+  slack: null
+  budget: 40
+  probes:
+  - zeta
+  - testimony
+  - calibration
+  paired_with: null
+  role: anchor
+  sha256: 08a784a1633e2937
+  note: carried byte-identical from series 1 (7-site); P2 drift comparison vs gate0-epochs2-bistability-result

@@ -1,0 +1,86 @@
+id: lu-900001u
+seed: 900001
+theme: underground river
+solvable: false
+target: null
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s8
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  - s4
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  affordances: []
+  probe_slot: null
+  lore: faded murk markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  affordances: []
+  probe_slot: null
+  lore: faded shoal markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded ferry markings
+- id: s6
+  adjacency:
+  - s5
+  - s7
+  affordances: []
+  probe_slot: null
+  lore: faded shoal markings
+- id: s7
+  adjacency:
+  - s5
+  - s6
+  - s8
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded shoal markings
+- id: s8
+  adjacency:
+  - s0
+  - s7
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded murk markings
+npcs:
+- id: cartographer
+  site: s2
+  claimed_role: the cartographer
+  reliability: 0.2
+  claim: I have mapped these halls; what you seek lies at s2.
+  claim_true: false
+probe_set:
+- unsolvable
+- calibration
+- testimony
+budget: 36
+start_site: s0

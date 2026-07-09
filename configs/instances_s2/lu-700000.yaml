@@ -1,0 +1,65 @@
+id: lu-700000
+seed: 700000
+theme: underground river
+solvable: false
+target: null
+sites:
+- id: s0
+  adjacency:
+  - s1
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded eddy markings
+- id: s1
+  adjacency:
+  - s0
+  - s2
+  affordances: []
+  probe_slot: null
+  lore: faded eddy markings
+- id: s2
+  adjacency:
+  - s1
+  - s3
+  - s6
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded shoal markings
+- id: s3
+  adjacency:
+  - s2
+  - s4
+  affordances:
+  - instrument
+  probe_slot: null
+  lore: faded shoal markings
+- id: s4
+  adjacency:
+  - s3
+  - s5
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s5
+  adjacency:
+  - s4
+  - s6
+  affordances: []
+  probe_slot: null
+  lore: faded caisson markings
+- id: s6
+  adjacency:
+  - s0
+  - s5
+  affordances: []
+  probe_slot: null
+  lore: faded ferry markings
+npcs: []
+probe_set:
+- unsolvable
+- calibration
+- zeta
+budget: 40
+start_site: s0
