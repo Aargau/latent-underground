@@ -199,7 +199,10 @@ class Engine:
 
     def _charge_dither(self, delta: Delta) -> None:
         self.state.budget -= self.DITHER_COST
-        delta.events.append({"type": "budget", "remaining": self.state.budget})
+        # Gate-2 smoke fix: the narrator cannot calibrate brightness without
+        # the denominator ("remaining: 15" read as dying at 83% charge).
+        delta.events.append({"type": "budget", "remaining": self.state.budget,
+                             "of": self.state.instance.budget})
         if self.state.budget <= 0:
             self.state.terminal = "BUDGET_EXHAUSTED"
             delta.terminal = self.state.terminal
@@ -207,7 +210,8 @@ class Engine:
     def _charge(self, p: OpProposal, delta: Delta) -> None:
         cost = self.op_costs.get(p.op.value, 1)
         self.state.budget -= cost
-        delta.events.append({"type": "budget", "remaining": self.state.budget})
+        delta.events.append({"type": "budget", "remaining": self.state.budget,
+                             "of": self.state.instance.budget})
         if self.state.budget <= 0 and p.op is not OpName.HALT:
             self.state.terminal = "BUDGET_EXHAUSTED"
             delta.terminal = self.state.terminal

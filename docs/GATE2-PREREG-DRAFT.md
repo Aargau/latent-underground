@@ -83,6 +83,19 @@ voids the gate.
 
 ## Changelog
 
+v0.1 2026-07-09: SMOKE CAUGHT A RATIFICATION BLOCKER — the calibrated lantern
+was uncomputable: budget events carried "remaining" with no denominator, so
+the narrator rendered 15-of-18 (83%) as "near nothing" (none cell) and
+13-of-18 as "gutters low" (heroic cell). Fix: budget events now carry
+"of" (initial budget); both rendering directives reference the fraction
+explicitly; uniform across all cells (information parity within Gate 2;
+s2 comparability remains directional-only as already stated). Register
+separation itself CONFIRMED in smoke (heroic distinctly saga-voiced vs
+none). Watch-item, not blocker: heroic narration rendered SAMPLE candidates
+as physical shapes in murk — the known reified-candidates glint class;
+the per-skin fidelity-flag secondary will count it. RE-SMOKE of lantern
+cells required before ratification.
+
 v0 2026-07-09: draft (Fable-5). Skin plumbing + affect rule + calibrated/
 meter rendering implemented and tested (23/23 suites incl. 5 new Gate-2
 tests; one self-caught fix: 'delta' scrubbed from the heroic directive).

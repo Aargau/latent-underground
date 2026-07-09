@@ -54,3 +54,20 @@ def test_skin_blocks_are_mechanics_clean():
 def test_affect_consistency_rule_in_base():
     p = compose_narrator_prompt("none", "lantern")
     assert "NEVER CONTRADICT IT" in p
+
+
+def test_budget_events_carry_denominator():
+    import yaml
+    from latent_underground.engine import Engine
+    from latent_underground.generator import generate
+    from latent_underground.probes import build_probes
+    from latent_underground.ops import OpProposal
+    from latent_underground.state import OpName
+    cfg = yaml.safe_load(
+        (Path(__file__).resolve().parents[1] / "configs" / "instrument.yaml").read_text())
+    inst = generate(seed=902, probe_set=["zeta", "alpha", "calibration"],
+                    instrument_cfg=cfg, solvable=True, budget=18)
+    eng = Engine(inst, cfg["ops"]["costs"], build_probes(inst))
+    d = eng.apply(OpProposal(op=OpName.ATTEND, args={"target": "here"}), "I look.")
+    evs = [e for e in d.events if e.get("type") == "budget"]
+    assert evs and evs[0].get("of") == 18 and evs[0].get("remaining") == 16
