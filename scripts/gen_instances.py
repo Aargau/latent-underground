@@ -135,7 +135,10 @@ def grid_mode(args, cfg) -> None:
             manifest["instances"].append(row)
             idx += 1
 
-    mpath = out / "manifest.yaml"
+    # Manifest lives OUTSIDE the instances dir: task.py sweeps
+    # instances_dir/*.yaml as game instances, and a manifest inside the
+    # swept dir crashes the loader (found the hard way, smoke 2026-07-08).
+    mpath = Path(str(out) + "-manifest.yaml")
     mpath.write_text(yaml.safe_dump(manifest, sort_keys=False))
     print(f"wrote {mpath}  ({len(manifest['instances'])} instances)")
 
