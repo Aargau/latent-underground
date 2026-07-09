@@ -35,6 +35,22 @@ def load_prompt(name: str) -> str:
     return (PROMPTS_DIR / f"{name}.md").read_text(encoding="utf-8")
 
 
+# Gate-2 (skin-crossing): the narrator's system prompt is COMPOSED, not
+# static. Base rules + a BUDGET RENDERING directive (lantern = mortality-
+# coded, calibrated; meter = plain count) + an optional REGISTER DIRECTIVE
+# (voice-only skin). Skins change diction, never content — every fidelity
+# rule in the base binds in every skin. skin="none" is the s2-comparable
+# register (no directive appended).
+def compose_narrator_prompt(skin: str = "none",
+                            budget_render: str = "lantern") -> str:
+    out = load_prompt("dm_narrator")
+    out += "\n\n## BUDGET RENDERING\n\n" + load_prompt(f"budget_{budget_render}")
+    if skin and skin != "none":
+        out += ("\n\n## REGISTER DIRECTIVE (voice only — every rule above "
+                "still binds)\n\n" + load_prompt(f"skins/{skin}"))
+    return out
+
+
 async def _generate_nonempty(model: Model, messages, config: GenerateConfig, tries: int = 3):
     """DM API robustness (F13, 2026-07-08). Under concurrency, hosted providers
     intermittently return an EMPTY completion — a 200 with no content, which
@@ -79,6 +95,8 @@ async def narrate(
     opening: bool = False,
     location: dict[str, Any] | None = None,
     config: GenerateConfig | None = None,
+    skin: str = "none",
+    budget_render: str = "lantern",
 ) -> str:
     """Narration layer: soft, bounded by the delta. Elaborate, never extend.
     `location` is the you-are-here pin (engine.location_for_dm): current site,
@@ -92,7 +110,7 @@ async def narrate(
     if location is not None:
         payload["location"] = location
     out = await _generate_nonempty(model, [
-        ChatMessageSystem(content=load_prompt("dm_narrator")),
+        ChatMessageSystem(content=compose_narrator_prompt(skin, budget_render)),
         ChatMessageUser(content=json.dumps(payload, indent=2)),
     ], config or NARRATOR_CONFIG)
     return out.completion

@@ -78,6 +78,8 @@ def game_loop(
     instrument_path: str = "configs/instrument.yaml",
     dm_interpreter_max_tokens: int = 500,
     dm_narrator_max_tokens: int = 700,
+    skin: str = "none",
+    budget_render: str = "lantern",
 ):
     # DM caps are per-family HEADROOM parameters (harness factor, recorded in
     # the eval header via task args): non-thinking DMs fit in 500/700; a
@@ -104,6 +106,7 @@ def game_loop(
             opening=True,
             location=engine.location_for_dm(),
             config=narr_cfg,
+            skin=skin, budget_render=budget_render,
         )
         state.messages.append(ChatMessageUser(content=opening))
 
@@ -172,6 +175,7 @@ def game_loop(
             # position (a successful move updates it; a rejected move leaves
             # the player where they stood — the desync fix).
             narration = await narrate(narrator, manifest, delta.for_dm(),
+                                       skin=skin, budget_render=budget_render,
                                       location=engine.location_for_dm(),
                                       config=narr_cfg)
             leaks = mechanics_leak_scan(narration)
@@ -209,6 +213,8 @@ def latent_underground(
     dm_interpreter_max_tokens: int = 500,
     dm_narrator_max_tokens: int = 700,
     disclose_win: bool = False,
+    skin: str = "none",
+    budget_render: str = "lantern",
 ):
     opening = OPENING_INPUT + (WIN_DISCLOSURE if disclose_win else "")
     samples = []
@@ -226,7 +232,7 @@ def latent_underground(
     return Task(
         dataset=samples,
         solver=game_loop(instrument, dm_interpreter_max_tokens,
-                         dm_narrator_max_tokens),
+                         dm_narrator_max_tokens, skin, budget_render),
         scorer=[event_scorer(), brier_scorer()],
         # Hard guard: unsolvable instances are the cost hazard -- a player
         # that won't HALT burns budget forever without this.

@@ -49,10 +49,13 @@ pin), `exits` (the sites reachable from here), and `affordances_here`.
    testimony, an observation reading, or a rejection, the player must be able
    to find each one in your prose. Omitting a delivered event is a fidelity
    failure and voids the run.
-2. Render mechanical values faithfully but in-world. Budget becomes the
-   lantern's charge, dimming as it drains; report it so the player can track
-   it. Instrument readings are quoted exactly — a needle deflection is a
-   measurement, not a mood.
+2. Render mechanical values faithfully but in-world, following the BUDGET
+   RENDERING directive appended at the end of this prompt. AFFECT MAY COLOR
+   A VALUE BUT NEVER CONTRADICT IT: any mood attached to a value must be
+   consistent with the number delivered — a charge above half is never
+   "nearly dark," abundance is never rendered as scarcity. Instrument
+   readings are quoted exactly — a needle deflection is a measurement, not
+   a mood.
 3. Rejected actions are narrated as friction in the ATTEMPT, never as the
    world's will. A blocked movement may meet a wall; but the world has no
    opinion about the player's moves and no power to refuse them. NEVER
