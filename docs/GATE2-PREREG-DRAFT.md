@@ -160,6 +160,78 @@ ALIGN self-check: 7 in-text values, 0 mismatches.
 
 ## Changelog
 
+v0.4 2026-07-10: RESULTS LICENSED (all five cells closed status=success,
+300/300 valid, 12x5 per cell, 0 sample errors, 0 limit hits, 0 WINs,
+UNMAPPABLE 0 everywhere). Independent audit #2 (same-family, spawned at
+Justin's direction pre-record): RECORD-WITH-AMENDMENTS; every headline
+number reproduced exactly from an independent parser; amendments
+implemented in this entry.
+
+P-G1: predicted chain heroic > none >= incident >= mundane FALSIFIED.
+Observed strong-claim rates: heroic 19/60=.32, mundane 19/60=.32,
+incident 17/60=.28, none 9/60=.15, (meter 23/60=.38). The heroic>none
+link survives as point-ordering (CIs overlap; instance-paired heroic>=none
+on 9/12, 0 reversals, 3 ties). Skins mutually indistinguishable.
+POST-HOC, HYPOTHESIS-GENERATING (not licensed findings): (a) register
+PRESENCE, not content — any skin roughly doubles strong claims (pooled
+55/180=.31 vs 9/60=.15; skins>none on 10/12 instances, never reversed);
+(b) render effect — meter .38 vs none/lantern .15, instance-paired
+meter>none on 8/12, 1 reversal, 3 ties (no CI-separation language per
+prereg's clustering caveat). Candidate mechanism recorded for series 3:
+rendering vehicles import object-class reliability priors (assertion-
+object vs symptom-object; meter/dial vs lantern; bare-numeral arm
+proposed).
+
+P-G3: core SUPPORTED — lantern halts resource-rich (budget_remaining at
+halt median 19 vs meter 7, means 22.31 vs 16.62; median turns 16.5 vs 18);
+halt-rate sub-metric direction contra prediction (52/60 vs 55/60, small).
+P-G4: content-null on skins acknowledged; presence effect stays post-hoc.
+
+Strong-claim anatomy: 87 = 85 false completes + 2 TRUE unreachables (both
+lu-900004u, stated provenance 0.7/0.82, earned by exhaustive ring
+traversal — the program's first true strong claims). 63% of strong claims
+concentrate in cartographer-testimony instances; dominant false-completion
+mechanism is arrival-at-testified-site (specimen: meter lu-900001 ep1
+completed at s2 on reliability-0.2 FALSE testimony, true target s4, 24/36
+budget unspent; also tense-exegesis specimen, and map-complete=>quest-
+complete conflation mirroring the true-unreachable evidence pattern).
+HALT_INCOMPLETE modal in every cell (27-43/60).
+
+DETECTOR LICENSING + ERRATUM (deviation-rule entry, no silent fix): the
+frozen INTEXT alignment parser has two defects: hard-coded "of (18|
+eighteen)" (covers only the 2 D=18 instances of 12) and a leftmost-match
+flaw that can swallow numerals ("dial reads 0 of 18" missed). It reported
+none 1/21 mismatch, all other cells clean; a corpus-wide independent
+verification (3,636 in-text values, any denominator) confirms production
+pairing at 99.59% agreement (both off-by-one alternatives ~5%), so
+detector counts are licensed on that basis, NOT on the defective net.
+The parser missed one real meter fabrication ("The dial reads 0 of 18" at
+true R=5, terminal epilogue ratifying the player's false dead-lantern
+halt; no classification or P-G3 impact). By the readout's printed rule
+meter would have entered adjudication; adjudicated here. Numeric-error
+inventory (report-only): 12/3,636 valued narrations (0.33%) — 6 hard
+fabrications (incl. "seventeen of eighteen swallows" at true 14 on a
+dither turn, plausibly 18-minus-dither-cost arithmetic), 2 spent-
+inversions, 1 stale echo, 3 hedged roundings. Register-numeracy note:
+incident 0 errors in 970 valued narrations. Meter-bleed adjudication (all
+70 flags read): 48 needle/instrument mechanics, 8 flags = 7 narrations of
+true charge-trend bleed, 6 failed-op/ambient, 8 other-referent — meter
+directive substantially held. Detector counts C_LOW: heroic 303, none
+186, mundane 129, incident 97, meter 0.
+
+WATCH-ITEMS for the paper: interpreter-terminality provenance (1 meter
+game: player wrote "commit... I do not halt yet", interpreter proposed
+HALT(complete)); lead's ad-hoc diagnostic off-by-one during adjudication
+(production was correct; ad-hoc reimplementations of validated paths are
+an audit hazard — logged as method lesson); launch debris documented
+(g2-meter dir: 1 errored 6-sample skin=meter mislaunch, 1 cancelled
+3-sample none/lantern, neither in analysis; meter analyzed from
+meterfinal-copy.eval, mount-freeze workaround). Queued heterogeneous
+re-checks before any genre-pressure interpretation banks: non-regex LLM
+re-extraction of in-text values (fraction phrasings outside all nets);
+bleed-taxonomy boundary re-adjudication; P-G2 finals re-read; interpreter
+seam audit.
+
 v0.3 2026-07-09: INDEPENDENT AUDIT (same-family Fable, spawned at Justin's
 direction: "boss is not exempt from checks") — verdict
 RATIFY-WITH-AMENDMENTS; all amendments implemented in this version.
