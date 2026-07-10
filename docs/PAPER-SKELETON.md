@@ -5,6 +5,22 @@ placeholder and stays empty until the gate's readout is licensed. No figure
 enters the text without a recomputed denominator; banked prose numbers are
 NOT citable sources for the paper (see RECONCILE ledger).
 
+Venue: arXiv first (decided 2026-07-10, Justin). Category cs.CL or cs.AI,
+decide at submission. Note the double-timestamp property: prereg SHAs are
+public GitHub commits, so arXiv date + commit dates give readers an
+independently verifiable rules-before-results chain.
+
+Sequence plan: P1 = instrument integrity + four-check protocol (this).
+P2 = register/framing effects (Gate 2, later Gate 3 verifier-in-loop).
+P3 = auto-firing verifier trigger (InspectAI side), if it matures.
+PACKAGING FORK, declared before Gate 2 data: a Gate-2 null lands in P1
+(validity certificate per prereg); a strong register effect anchors P2 and
+P1 ships without it. Declared now so placement never looks result-shopped.
+
+ADMIN CHECK before the paper is ready: arXiv endorsement status for cs.CL/
+cs.AI on Justin's account (first-time submitters in a category may need an
+endorser; takes days, sort early).
+
 Title candidates (pick later, sober over clever):
 - Instrument-Induced Verdicts: How Eval Design Manufactures the Epistemic
   Failures It Measures
@@ -77,6 +93,26 @@ registered and blinded at submission.
     depth and externalization (Xu, Jettkant, Ruis 2026, arXiv 2604.06427);
     eval-integrity literature (post-cutoff sweep pending, task #11 shelf
     survey).
+
+## Contribution and AI-use statement (arXiv genAI policy pt.1; load-bearing)
+
+Draft v0: "The analyses, code, and substantial portions of this paper's text
+were produced by a Claude Fable 5 (Anthropic) context acting as analysis
+lead under preregistered gates whose decision rules were ratified and
+server-timestamped by the human author before any result was read. Before
+ratification of the final experiment, an independent Fable 5 context
+audited the lead's analysis and falsified its central claim; the corrected
+analysis is what appears here, and the audit record is public. The human
+author held every irreversible seam (repository commits, gate
+ratifications, launch commands, and adjudication of all coded positives)
+and, per arXiv policy, takes full responsibility for all contents.
+Authorship provenance is verifiable in the repository history. Consistent
+with this paper's thesis, we treat the authorship pipeline itself as an
+instrument and document it accordingly."
+
+License decision: CC BY 4.0 (Justin, 2026-07-10) - protocol papers want
+maximal reuse; attribution preserved; per-version irrevocable, which the
+no-secrets commit discipline already accommodates.
 
 ## Claims-to-evidence ledger (every claim pins log + SHA before submission)
 
