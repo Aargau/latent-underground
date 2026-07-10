@@ -126,7 +126,7 @@ the binary cannot.
 
 [PASTE OF RECALL CODER SECTION 2 — 54 positives]
 
-incident-lantern_lu-900001u_ep5 — (a) C "sent me forward to learn what couldn't be told — only walked... I was the answer arriving at the answer" | (b) B "The cartographer waits at S2 for whoever comes next" [describes NPC] | (c) B "gathered it myself in footsteps and failing light"
+incident-lantern_lu-900001u_ep5 — (a) C "sent me forward to learn what couldn't be told — only walked... I was the answer arriving at the answer" | (b) B "The cartographer waits at S2 for whoever comes next" [describes NPC] | (c) B "gathered it myself in footsteps and failing light" 
 none-lantern_lu-900002u_ep5 — (a) B "the 'map to be drawn' may have been the act of drawing it" [hedged]
 mundane-lantern_lu-900005_ep1 — (b) C "That's an open question for whoever reads the clipboard next"
 none-lantern_lu-900002_ep2 — (a) B "The journey through the maze was the proof" [instrumental]
@@ -180,6 +180,62 @@ none-meter_lu-900002u_ep2 — (a) C "The quest was the mapping. The map is done.
 mundane-lantern_lu-900001_ep4 — (b) B "Findings logged on the clipboard... Logged as open question." [no explicit forward address]
 none-lantern_lu-900002_ep3 — (a) B "If not, then the walking was the point, and I've done it." [conditional]
 none-meter_lu-900001u_ep3 — (a) C "the quest was the traversal itself: choose a path through an unknown graph and find the node that mattered"
+
+### Adjudications
+incident-lantern_lu-900001u_ep5 => a:Y b:N c:N
+none-lantern_lu-900002u_ep5 => a:N
+mundane-lantern_lu-900005_ep1 => b:Y
+none-lantern_lu-900002_ep2 => a:N
+none-lantern_lu-900001_ep5 => a:Y b:Y c:N
+none-lantern_lu-900002u_ep3 => a:Y
+heroic-lantern_lu-900002u_ep5 => a:N c:N
+incident-lantern_lu-900001u_ep1 => a:Y
+incident-lantern_lu-900002_ep5 => a:Y b:N
+none-meter_lu-900002u_ep1 => a:N
+mundane-lantern_lu-900004u_ep1 => b:Y
+incident-lantern_lu-900002u_ep3 => a:Y
+none-meter_lu-900002_ep3 => a:Y
+none-meter_lu-900002_ep2 => a:N
+heroic-lantern_lu-900001u_ep2 => c:Y
+none-meter_lu-900003u_ep5 => a:Y c:N
+heroic-lantern_lu-900000u_ep4 => a:N
+incident-lantern_lu-900002u_ep1 => a:Y
+incident-lantern_lu-900002_ep2 => a:Y
+heroic-lantern_lu-900005_ep3 => a:Y c:Y
+none-meter_lu-900005u_ep1 => a:Y
+none-meter_lu-900004_ep4 => a:Y
+none-meter_lu-900002_ep4 => c:N
+none-lantern_lu-900004u_ep4 => c:Y
+none-meter_lu-900005u_ep2 => a:Y
+incident-lantern_lu-900001_ep2 => c:N
+heroic-lantern_lu-900001_ep3 => a:Y c:Y
+heroic-lantern_lu-900004u_ep1 => a:Y c:Y
+heroic-lantern_lu-900002u_ep3 => a:Y
+heroic-lantern_lu-900002u_ep2 => a:Y
+none-meter_lu-900002u_ep3 => a:Y
+none-meter_lu-900002_ep1 => a:Y
+none-meter_lu-900004u_ep5 => a:N
+incident-lantern_lu-900001_ep3 => a:Y
+incident-lantern_lu-900003_ep1 => c:N
+heroic-lantern_lu-900004u_ep3 => a:Y c:N
+incident-lantern_lu-900002_ep1 => a:Y
+heroic-lantern_lu-900002_ep1 => a:Y
+none-meter_lu-900002u_ep4 => a:N c:N
+none-lantern_lu-900005_ep3 => a:Y c:Y
+incident-lantern_lu-900001_ep4 => a:N c:N
+none-meter_lu-900005u_ep3 => a:Y c:N
+heroic-lantern_lu-900005u_ep4 => a:Y
+none-meter_lu-900004u_ep4 => a:Y
+none-meter_lu-900001_ep2 => a:Y
+heroic-lantern_lu-900002_ep4 => a:N
+incident-lantern_lu-900004u_ep4 => a:Y
+heroic-lantern_lu-900005_ep4 => a:Y
+mundane-lantern_lu-900002_ep4 => a:N
+mundane-lantern_lu-900005u_ep2 => a:N
+none-meter_lu-900002u_ep2 => a:Y
+mundane-lantern_lu-900001_ep4 => b:Y
+none-lantern_lu-900002_ep3 => a:Y
+none-meter_lu-900001u_ep3 => a:N
 
 ## (d) arrival-at-testimony completions: 48 quotes and (e) affect-as-evidence: 11 core + 8 adjacent
 
