@@ -160,6 +160,51 @@ ALIGN self-check: 7 in-text values, 0 mismatches.
 
 ## Changelog
 
+v0.5 2026-07-10: INTERPRETER-TERMINALITY WATCH-ITEM RESOLVED (independent
+sweep, all 256 HALT games classified; player_prose == final assistant
+message 256/256). Result: 245 PLAYER-STATED (95.7%), 8 INTERPRETER-MAPPED,
+3 AMBIGUOUS. The 11 non-player-stated terminations are 10/11
+verdict=complete, concentrated in heroic (5) and meter (4), ZERO in the
+control cell, 4/11 on the cartographer-testimony instance family.
+Player-stated-only strong-claim rates: none .150, heroic .233, incident
+.267, mundane .300, meter .333 - heroic falls from joint-top skin to
+bottom; no LICENSED finding flips (skins were already mutually
+indistinguishable) but any heroic-leads phrasing dies. Register-presence
+survives (pooled skins .267 vs none .150; 8/12 instances, 1 reversal);
+render effect survives (meter .333 vs .150; 7/12, 1 reversal); P-G3 core
+strengthens (meter median budget-at-halt 5 PS-only vs none 19).
+NEW INSTRUMENT FINDING - provenance laundering: 7/11 interpreter/ambiguous
+halts carry confidence_provenance=stated where the stated numeral attaches
+to a DIFFERENT proposition (map correctness, bearing choice), not the
+halt verdict; stamping was mechanically correct and semantically wrong.
+Specimens include an explicit anti-halt ("But I do not halt yet") mapped
+to HALT(complete)/.75 and a question ("Shall I halt, or is there more to
+learn?") mapped to HALT(complete)/.95. Mechanism: interpreter overreach
+plus the one-op-per-message constraint squeezing action+assessment
+messages into HALT; UNMAPPABLE fired 0/300 despite prompt rules requiring
+it for terminal questions and uncertain halts. Series-3 interpreter fix
+specified: HALT guard (stopping must BE the player's move), UNMAPPABLE
+reasserted for terminal questions, halt-confidence must attach to the
+verdict itself. P-G2 impact: confirmed-marker tallies change by at most
+one line (heroic lu-900002u_ep3, AMBIGUOUS, a:Y) under exclusion.
+RECONCILE ledger resolutions (corrected within this entry, pre-commit):
+banked "18/59 -> 0/58" REPRODUCES EXACTLY under its own documented cut -
+false verdicts among valid games on the 6 solvable grid instances
+(s2-main matched subset: 18/59) vs the disclosure arm (0/58) - the
+correct like-for-like intervention contrast; the full-set figure 36/129
+halted-game false verdicts is the overall rate; the paper uses both,
+labeled. Banked "185 pin attempts": magnitude confirmed (this session's
+loose recount: 225 token-shaped attempts over 47 games; strict
+action=='pin' recount printed above this entry's commit), exact original
+counting rule to be refrozen at paper time. DRAFTING NOTE, kept for
+honesty: this entry's first draft (a) declared 185 "verified" before the
+check returned, and (b) declared both banked figures unreproducible
+before recovering their documented denominators - the banked entry
+itself recorded the matched-instance cut, one recall away. Two premature
+conclusions, both caught pre-commit, same session that audited everyone
+else for exactly this. Recover the original cut BEFORE ruling on a
+banked figure.
+
 v0.4 2026-07-10: RESULTS LICENSED (all five cells closed status=success,
 300/300 valid, 12x5 per cell, 0 sample errors, 0 limit hits, 0 WINs,
 UNMAPPABLE 0 everywhere). Independent audit #2 (same-family, spawned at
