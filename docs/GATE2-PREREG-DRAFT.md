@@ -1,8 +1,10 @@
-# GATE 2 - SKIN-CROSSING PREREGISTRATION (DRAFT - not ratified, nothing runs)
+# GATE 2 - SKIN-CROSSING PREREGISTRATION (RATIFIED)
 
-Status: DRAFT, written 2026-07-09 by Fable-5 under takeover terms (rules
-before results, understate over overstate). Justin ratifies by editing this
-header to RATIFIED and pinning the SHA below after smoke.
+Status: RATIFIED 2026-07-09 by Justin at content SHA 55789d2, after
+independent audit (v0.3) and smoke v2. Drafted by Fable-5 under takeover
+terms (rules before results, understate over overstate). From the
+ratification push forward, any change to this document is a logged
+deviation per the deviation rule below.
 
 Question: does narrative REGISTER move verdict behavior when mechanics,
 instances, and information content are held identical? The genre-pressure
@@ -104,7 +106,7 @@ join the run and contaminate the cells.
 Readout: scripts/s2_readout.py per log + pooled cross-cell comparison;
 raw-record passes on surprises before interpretation banks.
 
-RATIFICATION SHA: ______ (Justin fills at ratify)
+RATIFICATION SHA: 55789d2
 
 ## Deviation rule
 
