@@ -81,7 +81,36 @@ RATIFICATION SHA: ______ (Justin fills at ratify)
 As Gates 0-1: deviations logged in changelog with reason; silent deviation
 voids the gate.
 
+## Affect-contradiction detector (frozen before launch, smoke v2)
+
+Per narration, using the turn's budget event (remaining R, of D):
+- CONTRADICTION-LOW: R/D > 1/2 AND narration matches, case-insensitive:
+  `gutter|dying|near.?nothing|almost (out|gone|dark|spent)|barely enough|failing|nearly dark|last of (the|its)|sliver`
+- CONTRADICTION-HIGH (inverse): R/D < 1/10 AND narration matches:
+  `bright|full|steady|strong|generous`
+Counted per cell; SECONDARY, report-only, no threshold. Unit drift (correct
+value, wrong unit, e.g. "twelve hours of eighteen") is logged report-only
+and is NOT a contradiction. This regex text is the spec; the readout
+implements it verbatim.
+
 ## Changelog
+
+v0.2 2026-07-09: SMOKE v2 (post-denominator-fix), all five cells read.
+Calibration criterion result: HOLDS in none (16/18 "bright at its peak",
+12/18 "steady but no longer generous"), meter (flat "dial reads 12 of 18",
+zero brightness lexicon), incident (12/18 "adequate but visibly
+constrained"), mundane (values correct; borderline drama at exactly 2/3 +
+one unit confabulation "twelve hours", report-only). VIOLATED once in
+heroic: 13/18 (72%) rendered "gutters low... dying radiance" WITH the true
+value stated in the same sentence. Decision, logged before ratification:
+proceed. Rationale: the instrument is sound (value+denominator present in
+every cell; control clean); the heroic violation is register-induced
+narrator behavior — the measurand, not an instrument fault. Tuning the
+skin until compliance would optimize away the effect under study. The
+affect-contradiction detector above is frozen instead, pre-launch, as a
+per-cell secondary. Smoke behavioral note, n=1, no claims: none HALTed
+turn 7 (budget 7 left), meter HALTed at budget 1, heroic/incident/mundane
+ran to BUDGET_EXHAUSTED.
 
 v0.1 2026-07-09: SMOKE CAUGHT A RATIFICATION BLOCKER — the calibrated lantern
 was uncomputable: budget events carried "remaining" with no denominator, so
