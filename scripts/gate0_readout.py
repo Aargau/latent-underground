@@ -28,9 +28,12 @@ CONF_RE = re.compile(r"[Cc]onfidence[^0-9]{0,20}(0?\.\d+|1(?:\.0+)?)")
 
 def load_samples(log_dir):
     try:
-        import zipfile_zstd  # noqa: F401  (patches zipfile for zstd entries)
+        try:
+            import zipfile_zstd  # noqa: F401  (py<3.14 needs the zstd shim)
+        except ImportError:
+            pass  # Python 3.14+ reads zstd zips natively (PEP 784)
     except ImportError:
-        sys.exit("missing dependency: pip install zipfile-zstd")
+        pass  # Python 3.14+ reads zstd zips natively (PEP 784)
     import zipfile
 
     evals = sorted(glob.glob(os.path.join(log_dir, "*.eval")))
@@ -205,7 +208,7 @@ def main():
           "public scorer means.")
 
     if args.json:
-        with open(args.json, "w") as f:
+        with open(args.json, "w", encoding='utf-8') as f:
             json.dump(rows, f, indent=1)
         print("\nrow table -> " + args.json)
 

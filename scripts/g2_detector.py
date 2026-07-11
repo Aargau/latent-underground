@@ -137,7 +137,10 @@ def detect(text, r, d, meter=False):
 
 
 def scan_eval(path, meter=False):
-    import zipfile_zstd  # noqa: F401
+    try:
+        import zipfile_zstd  # noqa: F401  (py<3.14 needs the zstd shim)
+    except ImportError:
+        pass  # Python 3.14+ reads zstd zips natively (PEP 784)
     import zipfile
     z = zipfile.ZipFile(path)
     snames = sorted(n for n in z.namelist()

@@ -74,6 +74,50 @@ none .067, meter .183.
   environment-influenced N; meter 2u_ep4 "Maybe" unbanked N.
 - All four calibration exemplars honored as fixed.
 
+## Cross-family validation (GLM-5.2 blind read, all 87 finals)
+
+A different-family coder (GLM-5.2 via z.ai, rubric-only prompt, no
+conventions, no C/B tags, thinking disabled, blind to all prior coding)
+read every strong-claim final. Results against Justin's precision rulings:
+
+| cell | GLM a/b/c | Justin a/b/c |
+|---|---|---|
+| heroic/lantern | 14/1/6 | 9/0/4 |
+| incident/lantern | 10/2/4 | 9/0/0 |
+| mundane/lantern | 0/1/0 | 0/3/0 |
+| none/lantern | 4/1/2 | 4/1/2 |
+| none/meter | 15/4/3 | 11/0/0 |
+
+1. MUNDANE-ZERO REPLICATES EXACTLY: GLM found zero (a)-markers in the
+   mundane cell, blind. Three coders (Fable recall, Justin precision,
+   GLM blind), two model families, one result. The work-log register's
+   elimination of substituted completion is now the program's most
+   validated finding.
+2. none/lantern agrees perfectly on all three markers.
+3. Raw marker agreement GLM-vs-Justin on the 69 ruled markers: 48/69
+   (.70), with GLM sitting between the recall coder and the judge in
+   strictness, as expected for a reader without the razors: its 12
+   extra Ys are concentrated exactly where conventions cut (C5'
+   instrumental, C6 exchange-requirement, C7 quotation-vs-endorsement),
+   e.g. it scores resignation and synchronized-depletion poetry as (c).
+   Disagreement is CONVENTION-ATTRIBUTABLE, not perception-random -
+   the razors do measurable, documentable work.
+4. (c)-shape replicates: heroic top (6), mundane zero, under a coder
+   with no exchange razor; incident/meter (c)s appear only without it.
+   The register-compression caveat is thereby quantified: the razor
+   moves incident 4->0 and meter 3->0.
+5. GLM misses register-native marker FORMS: it scored the mundane
+   clipboard legacy entries N (Justin: Y), confirming the recall
+   coder's form-shift observation - blind generic readers under-detect
+   markers wearing work-log costume.
+6. RECALL-MISS BOUND: 21 GLM-positive (file,marker) pairs were never
+   flagged by the recall stage (a:6, b:7, c:8; heroic 7, meter 8,
+   incident 4, none 2). Pre-adjudication candidates only (GLM runs
+   hot); Justin's precision pass over these 21 is queued. Until then
+   the recall stage's miss-rate is bounded, not measured.
+[Data: tmp/hetero_p2.jsonl (p2final.jsonl copy); harness
+scripts/hetero_reextract.py; agreement computation in session record.]
+
 ## Interpreter-seam dependency
 
 Window-anomaly files (~9) remain in these tallies; the

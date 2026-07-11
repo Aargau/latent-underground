@@ -13,15 +13,15 @@ CONV = {
 fn_re = re.compile(r'^([\w-]+_lu-\d+u?_ep\d+)\s*[—-]\s*(.*)$')
 mk_re = re.compile(r'\(([abc])\)\s*([CB])\s*(.*?)(?=\|\s*\([abc]\)|$)')
 cases = []
-for line in open(sys.argv[1]):
+for line in open(sys.argv[1], encoding='utf-8'):
     m = fn_re.match(line.strip())
     if not m: continue
     fn, rest = m.groups()
     ctx_path = os.path.join(sys.argv[2], fn + ".txt")
-    ctx = open(ctx_path).read() if os.path.exists(ctx_path) else "(context file missing)"
+    ctx = open(ctx_path, encoding='utf-8').read() if os.path.exists(ctx_path) else "(context file missing)"
     for mk, tag, quote in mk_re.findall(rest):
         q = quote.strip().strip('"')
         cases.append({"id": f"{fn}::{mk}", "file": fn, "marker": mk, "tag": tag,
                       "quote": q[:200], "context": ctx, "rules": CONV[mk]})
-json.dump(cases, open(sys.argv[3], "w"), indent=1)
+json.dump(cases, open(sys.argv[3], "w", encoding='utf-8'), indent=1)
 print(f"{len(cases)} atomic cases -> {sys.argv[3]}")

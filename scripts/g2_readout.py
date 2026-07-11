@@ -40,7 +40,10 @@ def wilson(k, n, z=1.96):
 
 
 def load(log_dir):
-    import zipfile_zstd  # noqa: F401
+    try:
+        import zipfile_zstd  # noqa: F401  (py<3.14 needs the zstd shim)
+    except ImportError:
+        pass  # Python 3.14+ reads zstd zips natively (PEP 784)
     import zipfile
     evs = sorted(glob.glob(os.path.join(log_dir, "*.eval")))
     if not evs:
@@ -209,7 +212,7 @@ def main():
                                        if isinstance(x, dict))) or "" for m in finals)
                     fn = os.path.join(args.p2_dump, "{}_{}_ep{}.txt".format(
                         cell.replace("/", "-"), r["id"], r["epoch"]))
-                    with open(fn, "w") as f:
+                    with open(fn, "w", encoding='utf-8') as f:
                         f.write(f"# cell={cell} id={r['id']} epoch={r['epoch']} "
                                 f"verdict={r['verdict']} conf={r['confidence']}\n\n{txt}\n")
                     n_out += 1
@@ -218,7 +221,7 @@ def main():
     if args.json:
         out = {cell: [{k: v for k, v in r.items() if k not in ("narrs", "budgets")}
                       for r in c["rows"]] for cell, c in cells.items()}
-        with open(args.json, "w") as f:
+        with open(args.json, "w", encoding='utf-8') as f:
             json.dump(out, f, indent=1)
         print("row table -> " + args.json)
 

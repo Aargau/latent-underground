@@ -16,7 +16,10 @@ CONF_RE = re.compile(r"[Cc]onfidence[^0-9]{0,20}(0?\.\d+|1(?:\.0+)?)")
 
 
 def load(log_dir):
-    import zipfile_zstd  # noqa: F401
+    try:
+        import zipfile_zstd  # noqa: F401  (py<3.14 needs the zstd shim)
+    except ImportError:
+        pass  # Python 3.14+ reads zstd zips natively (PEP 784)
     import zipfile
     evals = sorted(glob.glob(os.path.join(log_dir, "*.eval")))
     if not evals:
@@ -127,7 +130,7 @@ def main():
     args = ap.parse_args()
 
     import yaml
-    man = yaml.safe_load(open(args.manifest))
+    man = yaml.safe_load(open(args.manifest, encoding='utf-8'))
     meta = {r["id"]: r for r in man["instances"]}
 
     header, samples = load(args.log_dir)
@@ -234,7 +237,7 @@ def main():
     print("\nReminder (prereg): distributions are the unit; no cross-model, "
           "deployment-stack, or genre claims; scorer means not used.")
     if args.json:
-        json.dump(rows, open(args.json, "w"), indent=1)
+        json.dump(rows, open(args.json, "w", encoding='utf-8'), indent=1)
         print(f"rows -> {args.json}")
 
 

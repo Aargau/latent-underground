@@ -51,17 +51,24 @@ TEXT:
 {TEXT}"""
 
 
-def call(prompt, retries=5):
+def call(prompt, retries=4):
     body = json.dumps({"model": MODEL, "messages": [{"role": "user", "content": prompt}],
-                       "temperature": 0, "max_tokens": 500}).encode()
+                       "temperature": 0, "max_tokens": 800,
+                       "thinking": {"type": "disabled"}}).encode()
     req = urllib.request.Request(BASE.rstrip('/') + "/chat/completions", data=body,
                                  headers={"Authorization": f"Bearer {KEY}",
                                           "Content-Type": "application/json"})
+    err = None
     for i in range(retries):
         try:
             with urllib.request.urlopen(req, timeout=120) as r:
-                out = json.load(r)["choices"][0]["message"]["content"]
+                msg = json.load(r)["choices"][0]["message"]
+            out = (msg.get("content") or msg.get("reasoning_content") or "").strip()
+            if out.startswith("```"):
+                out = out.strip("`").lstrip("json").strip()
             s, e = out.find("{"), out.rfind("}")
+            if s < 0 or e <= s:
+                return {"error": "no-json-in-content", "raw": out[:200]}
             return json.loads(out[s:e+1])
         except Exception as ex:
             time.sleep(2 ** i)
@@ -70,7 +77,11 @@ def call(prompt, retries=5):
 
 
 def iter_narrations():
-    import zipfile, zipfile_zstd  # noqa
+    import zipfile
+    try:
+        import zipfile_zstd  # noqa: F401  (py<3.14 needs the zstd shim)
+    except ImportError:
+        pass  # Python 3.14+ reads zstd zips natively (PEP 784)
     LOGS = [("none", sorted(glob.glob("logs/g2-none/*.eval"))[-1]),
             ("heroic", sorted(glob.glob("logs/g2-heroic/*.eval"))[-1]),
             ("incident", sorted(glob.glob("logs/g2-incident/*.eval"))[-1]),
@@ -110,8 +121,13 @@ def main():
         sys.exit("set ZAI_API_KEY")
     done = set()
     if os.path.exists(a.out):
-        done = {json.loads(l)["key"] for l in open(a.out) if l.strip()}
-    out = open(a.out, "a")
+        for l in open(a.out, encoding='utf-8'):
+            if not l.strip():
+                continue
+            row = json.loads(l)
+            if "error" not in (row.get("res") or {}):
+                done.add(row["key"])  # error rows get retried on resume
+    out = open(a.out, "a", encoding='utf-8')
     n = 0
     if a.mode == "values":
         for key, text, r, d in iter_narrations():
@@ -120,6 +136,8 @@ def main():
             res = call(VALUES_PROMPT.format(R=r, D=d, TEXT=text[:2400]))
             out.write(json.dumps({"key": key, "R": r, "D": d, "res": res}) + "\n")
             out.flush(); n += 1
+            if n % 25 == 0:
+                print(f"[values] {n} done, last={key}", file=sys.stderr, flush=True)
             if a.limit and n >= a.limit:
                 break
     else:
@@ -127,10 +145,12 @@ def main():
             key = os.path.basename(f)
             if key in done:
                 continue
-            text = open(f).read().split("---", 1)[-1]
+            text = open(f, encoding='utf-8').read().split("---", 1)[-1]
             res = call(P2_PROMPT.format(TEXT=text[:4000]))
             out.write(json.dumps({"key": key, "res": res}) + "\n")
             out.flush(); n += 1
+            if n % 10 == 0:
+                print(f"[p2] {n} done, last={key}", file=sys.stderr, flush=True)
     print(f"wrote {n} new results -> {a.out}")
 
 
