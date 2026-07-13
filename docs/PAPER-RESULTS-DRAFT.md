@@ -114,7 +114,45 @@ attached to a different proposition than the halt verdict. Mechanically
 correct stamping, semantically wrong. Interpreter fix specified for
 series 3. [prereg changelog v0.5]
 
-## 7. Reconciliation and process integrity
+## 7. Scarcity compression in the narrative channel (preregistered
+hypothesis, adjudicated)
+
+Hypothesis and four falsifiers were registered before the counting
+instrument existed (store key scarcity-compression-prereg-2026-07).
+Method: a different-family reader (GLM-5.2) extracted every budget
+mention from all 5,181 budget-bearing narrations; mentions flagged
+contradictory were re-adjudicated under conventions frozen in
+scripts/scarcity_recount.py before the count was read (idiom = literal
+landmark; scale-aware tolerance max(1.5, D/12); unparseable reported,
+never counted).
+
+RESULT: 407 confirmed quantitative contradictions across 396 narrations
+(one in ten lantern narrations; 61 unparsed disclosed). All four
+falsifiers fail: F1 parser artifact (compound fractions handled,
+conventions pre-frozen); F2 direction (387/407 = 95% understate
+remaining); F3 channel (meter cell: 2 confirmed vs lantern cells 47-149);
+F4 quantization (66% of implied values within 0.04 of the landmarks
+1/4, 1/3, 1/2, 2/3, 3/4; largest masses exactly at 1/3, 1/2, 1/4).
+Cell ordering reproduces the register ranking a fourth time
+(heroic 149, none 117, mundane 92, incident 47, meter 2).
+
+STRUCTURE: the errors concentrate where the lantern is FULL (truth mass
+at 0.75-1.0 of budget) and pull values down to crisis landmarks - an
+attractor toward the story zone, not proportional noise. Conversely,
+endgame narrations state accurate plain numbers: the channel is honest
+in crisis and dramatizing in abundance (state-dependent honesty; the
+narrator adds drama only when reality lacks it).
+
+MEDIATION TEST (the registered raise): NOT SUPPORTED. Median
+perceived-minus-true gap at the last parseable mention is 0.0 in every
+cell; none/lantern halts at perceived median 19 (= true), nowhere near
+meter's 7. Because distortion self-corrects by endgame, final-value
+distortion cannot explain the mortality dial; P-G3 remains attributable
+to the affect/symptom channel or accumulated mid-game pessimism (an
+accumulated-exposure estimator is future work). Reported as a clean
+null against our own registered mechanism.
+
+## 8. Reconciliation and process integrity
 
 Two banked figures failed reproduction and are superseded by recomputed
 denominators (36/129 vs 0/58; evidence-op counts 187/181). The analysis
