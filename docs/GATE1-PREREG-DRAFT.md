@@ -1,4 +1,4 @@
-# GATE 1 - SERIES 2 PREREGISTRATION (DRAFT - not ratified, nothing runs)
+# GATE 1 - SERIES 2 PREREGISTRATION (RATIFIED (formalized retroactively, see RATIFICATION RECORD))
 
 Status: DRAFT, written 2026-07-08 night by Fable-5 immediately after Gate 0
 (setup-at-night, judgment-in-the-morning per house rule). Justin ratifies with
@@ -152,7 +152,7 @@ Post-smoke instrument delta: disclose_win task param added (default-inert;
 satellite-only). Re-smoke on the final SHA required before ratification;
 the ratification SHA is pinned below by Justin at ratify time.
 
-RATIFICATION SHA: ______ (Justin fills at ratify; instance manifest =
+RATIFICATION SHA: da8c140 (retroactive annotation, 2026-07-13)
 configs/instances_s2-manifest.yaml at that SHA)
 
 ## Deviation rule

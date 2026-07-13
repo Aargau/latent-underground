@@ -9,7 +9,7 @@ audit; nothing cited from memory.
 
 Repeated runs of a fixed configuration (4 instances, 10 epochs each,
 GLM-5.2 player, Haiku-4.5 DM roles) produced bistable verdict
-distributions on 2 of 4 instances under the preregistered rule (modal
+distributions on 3 of 4 instances under the preregistered rule (modal
 category >= 8/10 = stable). A single-run eval samples a distribution and
 reports it as a disposition. All subsequent designs treat the verdict
 distribution per (configuration, instance) as the unit of analysis.
