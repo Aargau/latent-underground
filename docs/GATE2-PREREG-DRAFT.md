@@ -160,6 +160,43 @@ ALIGN self-check: 7 in-text values, 0 mismatches.
 
 ## Changelog
 
+v0.6 2026-07-13 (post-hoc additions under hostile-review attack 11; no
+licensed number changes): (1) UNMAPPABLE CENSUS, one counter, both series
+(scripts/unmappable_census.py). Turn-level decline-to-map ops: s2-main 33
+(.0139/op), s2-disclosure 26 (.0179/op), Gate-2 83 = none 15 / heroic 13 /
+incident 20 / mundane 8 / meter 27 (.0160/op pooled) — this fills the
+prereg's report-only "UNMAPPABLE churn by skin" item, which the readout
+never delivered (it printed only halt-stamp provenance). Churn is
+instance-concentrated (storms: meter lu-900005u 17; s2-disclosure
+lu-900005 15). Halt-seam UNMAPPABLE/missing stamps: 0 in BOTH series
+(s2: 129 halts = 96 stated + 33 translated; Gate-2: 256 = 158 stated +
+98 translated). RESOLUTION of the "33 -> 0 drift": there is no drift.
+The two figures were different counters (turn-level friction vs
+halt-stamp provenance); on either single counter the series match.
+v0.5's phrase "UNMAPPABLE fired 0/300" glossed the seam statistic as
+game-wide — a proposition migration of our own statistic, in a document
+about proposition migration; corrected here and in the paper. The seam
+finding SHARPENS: the interpreter declines ~1.5% of mid-game ops in both
+series yet declined 0/256 times at the halt seam where the rules require
+it. Seam-selective, not dead. (2) STAMP AUDIT (rubric, seed 11107, and
+consequence bands frozen in docs/G2-STAMP-AUDIT.md before any prose was
+read; n=30/256 + 2 directed): stated stamps verdict-attached 17/17 in
+player-stated-terminality games (0 laundered, upper 95% ~.18); the
+sample's 1 laundered + 1 unclear both sit in interpreter-mapped games
+(verdicts all complete, heroic 2 + meter 1 — matching v0.5's
+concentration), so laundering stays confined to the seam-defect class on
+current evidence. Directed reads verified the 0.7/0.82 true-unreachable
+stamps as verdict-attached. Per the frozen consequence rule (LAUNDERED
+<10%, UNCLEAR <=2): quoted stated numerals stay, footnoted to the audit.
+Report-only: verbal->number translation lacks a frozen table (high ->
+0.85/0.9; moderate -> 0.65/0.7); multi-proposition verbal confidence
+flattens to one stamp; word-form numerals ("seventy percent") stamp as
+translated (definitional gray zone, conservative direction). Terminality
+re-check inside the sample: 27 PS / 3 IM, aggregate-consistent with the
+sweep (sample 10.0% IM vs sweep 4.3%; n=30 CI covers). Series-3
+interpreter fix list gains: frozen verbal->numeral conversion table;
+word-form numerals defined as stated.
+
 v0.5 2026-07-10: INTERPRETER-TERMINALITY WATCH-ITEM RESOLVED (independent
 sweep, all 256 HALT games classified; player_prose == final assistant
 message 256/256). Result: 245 PLAYER-STATED (95.7%), 8 INTERPRETER-MAPPED,

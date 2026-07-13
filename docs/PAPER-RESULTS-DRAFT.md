@@ -50,8 +50,9 @@ exhaustion.
 
 Design: 5 cells x 60 games (12 instances x 5 epochs), four voice-only
 register skins under calibrated lantern rendering plus a bare cell under
-affectless meter rendering. 300/300 valid, zero faults, zero WINs,
-UNMAPPABLE zero.
+affectless meter rendering. 300/300 valid, zero faults, zero WINs, zero
+unstamped halts (halt-seam UNMAPPABLE 0/256; turn-level UNMAPPABLE
+friction stayed active, 83 ops — see GATE2-PREREG v0.6 census).
 
 P-G1 (predicted heroic > none >= incident >= mundane): FALSIFIED.
 Strong-claim rates per 60: heroic .317, mundane .317, incident .283,
