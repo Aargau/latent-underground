@@ -61,14 +61,24 @@ gradient is absent.
 Post-hoc structure 1 (hypothesis-generating): register PRESENCE, not
 content. Any skin roughly doubles strong claims over the bare cell
 (pooled 55/180 = .306 vs 9/60 = .150; skins > none on 10/12 instances,
-never reversed).
+never reversed). CONFOUND, acknowledged (external review, GPT-5.6):
+skins add a directive block to the narrator prompt, so presence-of-voice
+is confounded with prompt composition; a placebo-directive control cell
+(same block structure, non-register content) is specified for series 3
+and this effect stays hypothesis-generating until it runs.
 
 Post-hoc structure 2 (hypothesis-generating): budget RENDERING moves
 verdicts. The two cells differing only in rendering: meter .383 vs
 lantern .150 (meter > none on 8/12 instances, 1 reversal). P-G3 core
 supported: lantern players abandon resource-rich (median budget remaining
-at halt 19 vs meter 7). Candidate mechanism: rendering vehicles import
-object-class reliability priors (assertion-object vs symptom-object).
+at halt 19 vs meter 7). Robustness against the varying per-instance
+budgets (D in {18,24,36,48,72,96}, mix identical across cells): restated
+scale-free, median FRACTION of budget remaining at halt is none .403,
+mundane .444, incident .312, heroic .285, meter .167 - the render gap
+(lantern cells .29-.44 vs meter .17) exceeds every register gap and is
+immune to denominator-mix objections. Candidate mechanism: rendering
+vehicles import object-class reliability priors (assertion-object vs
+symptom-object).
 
 Strong-claim anatomy: 87 = 85 false completes + 2 true unreachables
 (both on one unsolvable twin, stated confidence 0.7/0.82, earned by
