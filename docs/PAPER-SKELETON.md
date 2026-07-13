@@ -34,7 +34,7 @@ with planted ground truth, a player model explores under a resource budget
 and must eventually assert that its goal is complete, unreachable, or not
 yet decidable. Decision rules were preregistered and server-timestamped
 before each result was read. In this setting, instrument design was the
-first-order determinant of measured character. Repeated runs of a fixed
+largest measured factor of measured character. Repeated runs of a fixed
 configuration produced bistable verdict distributions, so a single-run eval
 samples a distribution and reports it as a disposition. A two-verdict
 outcome grammar manufactured false claims; adding a calibrated third
