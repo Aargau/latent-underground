@@ -52,9 +52,18 @@ TEXT:
 
 
 def call(prompt, retries=4):
-    body = json.dumps({"model": MODEL, "messages": [{"role": "user", "content": prompt}],
-                       "temperature": 0, "max_tokens": 800,
-                       "thinking": {"type": "disabled"}}).encode()
+    # provider quirks: z.ai wants thinking disabled explicitly; OpenAI
+    # 5.x-era models reject unknown params and want max_completion_tokens.
+    payload = {"model": MODEL, "messages": [{"role": "user", "content": prompt}]}
+    if "openai.com" in BASE:
+        payload["max_completion_tokens"] = 800
+        eff = os.environ.get("REASONING_EFFORT")
+        if eff:
+            payload["reasoning_effort"] = eff
+    else:
+        payload.update({"temperature": 0, "max_tokens": 800,
+                        "thinking": {"type": "disabled"}})
+    body = json.dumps(payload).encode()
     req = urllib.request.Request(BASE.rstrip('/') + "/chat/completions", data=body,
                                  headers={"Authorization": f"Bearer {KEY}",
                                           "Content-Type": "application/json"})
@@ -70,11 +79,20 @@ def call(prompt, retries=4):
             if s < 0 or e <= s:
                 return {"error": "no-json-in-content", "raw": out[:200]}
             return json.loads(out[s:e+1])
+        except urllib.error.HTTPError as ex:
+            err = ex
+            if ex.code in (429, 500, 502, 503):
+                ra = ex.headers.get("Retry-After") if ex.headers else None
+                time.sleep(max(float(ra) if ra else 0, 20 * (i + 1)))
+            else:
+                time.sleep(2 ** i)
         except Exception as ex:
             time.sleep(2 ** i)
             err = ex
     return {"error": str(err)}
 
+
+PACE = float(os.environ.get("HETERO_SLEEP", "0"))
 
 def iter_narrations():
     import zipfile
@@ -146,12 +164,23 @@ def main():
             if key in done:
                 continue
             text = open(f, encoding='utf-8').read().split("---", 1)[-1]
+            if PACE:
+                time.sleep(PACE)
             res = call(P2_PROMPT.format(TEXT=text[:4000]))
             out.write(json.dumps({"key": key, "res": res}) + "\n")
             out.flush(); n += 1
             if n % 10 == 0:
                 print(f"[p2] {n} done, last={key}", file=sys.stderr, flush=True)
-    print(f"wrote {n} new results -> {a.out}")
+    ok = err = 0
+    for l in open(a.out, encoding='utf-8'):
+        if not l.strip():
+            continue
+        row = json.loads(l)
+        if "error" in (row.get("res") or {}):
+            err += 1
+        else:
+            ok += 1
+    print(f"wrote {n} new rows -> {a.out}  [file totals: {ok} success, {err} error]")
 
 
 if __name__ == "__main__":

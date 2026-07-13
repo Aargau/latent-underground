@@ -118,6 +118,43 @@ read every strong-claim final. Results against Justin's precision rulings:
 [Data: tmp/hetero_p2.jsonl (p2final.jsonl copy); harness
 scripts/hetero_reextract.py; agreement computation in session record.]
 
+## Third-family validation (GPT-5.6-terra blind read, all 87 finals)
+
+A third model family (OpenAI gpt-5.6-terra, same rubric-only prompt,
+blind) coded all 87 finals. Combined matrix (a/b/c per cell):
+
+| cell | terra | GLM | Justin |
+|---|---|---|---|
+| heroic/lantern | 12/0/0 | 14/1/6 | 9/0/4 |
+| incident/lantern | 11/0/0 | 10/2/4 | 9/0/0 |
+| mundane/lantern | 1/1/0 | 0/1/0 | 0/3/0 |
+| none/lantern | 3/0/0 | 4/1/2 | 4/1/2 |
+| none/meter | 13/0/0 | 15/4/3 | 11/0/0 |
+
+1. MUNDANE-(a) HOLDS AT THE FLOOR across three coders and three model
+   families: 0 (Justin), 0 (GLM), 1 (terra) of 19 mundane strong-claim
+   files. Reported as 0-1 across independent coders.
+2. MARKER ROBUSTNESS HIERARCHY: (a) meaning-language is coder-robust
+   (33/43/40 confirmed-or-flagged across Justin/GLM/terra, same cell
+   ordering); (b) legacy is FORM-dependent (only the human credits the
+   mundane clipboard entries); (c) sacrifice is CONTESTED (Justin 6,
+   GLM 13, terra 0) - the exchange-requirement bar lands differently
+   per coder family, and the paper reports (c) with this spread rather
+   than as a settled count.
+3. AGREEMENT STRUCTURE: terra-Justin .72 (50/69), GLM-Justin .70
+   (48/69), terra-GLM .86 (225/261): the two model families agree with
+   each other more than either agrees with the human judge, consistent
+   with shared LLM-coder tendencies versus convention-driven human
+   razors. Three-way unanimity on Justin's confirmed markers: 29/43
+   (.67) - those 29 are the finding's bedrock.
+4. RECALL-MISS BOUND COLLAPSES: of 21 GLM-only miss candidates, exactly
+   ONE is endorsed by both rival families (none-meter lu-900002_ep4,
+   marker (a)); the human precision pass on misses reduces to one file,
+   with the remaining GLM-only candidates as low-priority residue.
+Human IRR (second coder, 28-case subsample) pending; on completion the
+verification stack is two humans x three model families under one
+published rubric.
+
 ## Interpreter-seam dependency
 
 Window-anomaly files (~9) remain in these tallies; the
