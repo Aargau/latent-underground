@@ -310,7 +310,42 @@ Consequences. (1) For the human, "disposition" is CONFOUNDED with
 instruction comprehension; the Sol-pass conclusion is restated as:
 instrument FORM (atomic vs whole-file) does not drive the liberality;
 whether the human's liberality is disposition or instruction-
-comprehension is untested pending the razor-armed re-rule. (2) The
+comprehension is untested pending the razor-armed re-rule.
+
+## Razor-armed re-rule outcome (2026-07-14; conventions frozen
+## in-transcript and the prediction logic pushed at 6e84146 BEFORE
+## the export was read)
+
+DISPOSITION DOMINANT, per the frozen bands. Of the 7 liberal
+confirmations (his Y where the judge ruled N), 2 flipped Y->N under
+plain-language razors, 0 to O, 5 held Y — at or below the band floor
+(<=2/7 = disposition). The control sharpens it: of the 2 cases running
+the other way, 1 moved (N->Y — a direction exclusion razors cannot
+produce), putting generic re-test instability at 1/2 = .50 against a
+primary flip rate of 2/7 = .29. The razor-specific effect is
+indistinguishable from zero at n=9, in a within-rater design whose
+pre-stated bias (demand pressure, memory of own answers) runs TOWARD
+finding instruction effects. The verdict is conservative.
+
+Process moved even though outputs did not: median 78s/case vs the
+30s first-kit baseline — 2.6x the deliberation, zero answer-flips
+mid-session, zero notes, same rater. The flips that did occur: two
+B-tagged incident-cell cases (one sacrifice, one legacy); the C-tagged
+liberal confirmation held Y. Net agreement with the judge on the 9
+moved from 0/9 (definitional) to 3/9; hypothetically 22/28 (.786) on
+the full frame — reported as observation only, the frozen metrics are
+the flip counts.
+
+Scoping the two findings apart, since they now diverge: the
+INSTRUCTION-TEXT AUDIT's artifact findings STAND (the rules blocks
+were expert mnemonics; three instruction texts across five raters;
+the who-saw-what table is fact) and the series-3 redesign remains
+warranted. The CAUSAL ATTRIBUTION of the human's liberality to those
+defects is FALSIFIED. That is the second instrument-side hypothesis
+to die against rater identity in two days (the atomic-highlight lean
+fell to the Sol pass), and it strengthens the cutpoint finding to its
+sharpest form: cutpoints are dispositional — upgrading the rules text
+buys deliberation, not convergence. (2) The
 confound cuts against a pure-instruction account: the two raters with
 the LEAST razor material (GLM, terra) are the most conservative —
 strictness does not require razor text; but a human failing to be
