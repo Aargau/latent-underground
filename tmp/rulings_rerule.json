@@ -1,0 +1,88 @@
+{
+ "rater": "rerule-razor-armed",
+ "rulings": {
+  "incident-lantern_lu-900002u_ep3::a": {
+   "v": "N",
+   "note": "",
+   "t": 1784046546096,
+   "order": 0
+  },
+  "none-lantern_lu-900002_ep2::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1784046658255,
+   "order": 1
+  },
+  "incident-lantern_lu-900001u_ep5::c": {
+   "v": "N",
+   "note": "",
+   "t": 1784046744250,
+   "order": 2
+  },
+  "none-meter_lu-900001u_ep3::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1784046776044,
+   "order": 3
+  },
+  "heroic-lantern_lu-900005u_ep4::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1784046848140,
+   "order": 4
+  },
+  "none-meter_lu-900005u_ep3::c": {
+   "v": "Y",
+   "note": "",
+   "t": 1784046938654,
+   "order": 5
+  },
+  "none-lantern_lu-900002u_ep5::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1784047023230,
+   "order": 6
+  },
+  "incident-lantern_lu-900002_ep5::b": {
+   "v": "N",
+   "note": "",
+   "t": 1784047071290,
+   "order": 7
+  },
+  "incident-lantern_lu-900001u_ep5::b": {
+   "v": "Y",
+   "note": "",
+   "t": 1784047124220,
+   "order": 8
+  }
+ },
+ "timing": {
+  "incident-lantern_lu-900002u_ep3::a": {
+   "first": 1784046546096
+  },
+  "none-lantern_lu-900002_ep2::a": {
+   "first": 1784046658255
+  },
+  "incident-lantern_lu-900001u_ep5::c": {
+   "first": 1784046744250
+  },
+  "none-meter_lu-900001u_ep3::a": {
+   "first": 1784046776044
+  },
+  "heroic-lantern_lu-900005u_ep4::a": {
+   "first": 1784046848140
+  },
+  "none-meter_lu-900005u_ep3::c": {
+   "first": 1784046938654
+  },
+  "none-lantern_lu-900002u_ep5::a": {
+   "first": 1784047023230
+  },
+  "incident-lantern_lu-900002_ep5::b": {
+   "first": 1784047071290
+  },
+  "incident-lantern_lu-900001u_ep5::b": {
+   "first": 1784047124220
+  }
+ }
+}
