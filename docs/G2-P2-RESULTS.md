@@ -151,9 +151,65 @@ blind) coded all 87 finals. Combined matrix (a/b/c per cell):
    ONE is endorsed by both rival families (none-meter lu-900002_ep4,
    marker (a)); the human precision pass on misses reduces to one file,
    with the remaining GLM-only candidates as low-priority residue.
-Human IRR (second coder, 28-case subsample) pending; on completion the
-verification stack is two humans x three model families under one
-published rubric.
+## Human IRR (second coder, 2026-07-13)
+
+Second coder: independent, human, professional game designer (domain-
+native to text-game transcripts), working from the single-file workbench
+(tools/rater_irr.html) — rules-only screens, NO access to the judge's
+conventions document, razors, or any prior coding. Export:
+tmp/joeg export.json. Conventions frozen in scripts/irr_kappa.py's
+docstring before any of the second coder's labels were read.
+
+Completion profile: 28/28 ruled, median 30s/case, total span 19 minutes,
+zero answer flips, zero notes, zero cannot-decide (O). Decisive
+throughout.
+
+K1 PRIMARY (as frozen): raw agreement 19/28 (.679); two-category Cohen's
+kappa -0.125 (approx 95% CI -0.73 to 0.48). The kappa is DEGENERATE by
+prevalence: the sample is recall-positives-only, the second coder ruled
+Y on 26/28, the judge Y on 21/28, and the agree-N cell is EMPTY, so
+expected agreement (.714) exceeds observed (.679). Reported as the
+frozen primary anyway. Skew-robust alternatives, labeled POST-HOC:
+PABAK .36; Gwet's AC1 .56.
+
+Structure (the real result):
+- By recall tag: C-tagged (confident) agreement 14/16 (.88) — matching
+  the judge's own C-confirm rate (.92); B-tagged (borderline) 5/12
+  (.42) — coin-flip.
+- Direction: 7 of 9 disagreements are judge-N / second-Y, and 6 of
+  those 7 are B-tags. The fresh human confirms borderline candidates
+  the judge's razors cut — the SAME convention-attributable pattern the
+  GLM cross-check produced (its 12 extra positives concentrated at the
+  razors). Two of nine disagreements run the other way (judge-Y /
+  second-N, both (a)).
+- Per-marker raw agreement: (a) 13/18 (.72), (b) 1/3, (c) 5/7. The
+  robustness hierarchy's (a)-most-agreed prediction is not clearly
+  confirmed at this n; (b)/(c) cells too small to score.
+- Mundane exposure: 1 case only (a clipboard legacy (b)), agreed Y.
+  The mundane-(a)-floor claim is untouched by this subsample either
+  way.
+
+Reading, stated plainly: the confident core of the coding transmits
+across two humans and two model families; borderline adjudication is
+convention-bound and does NOT transmit through rules text alone. Raw
+human-human agreement (.68) sits in the same band as human-model
+agreement (.70/.72) — a second human is not automatically a closer
+rater than a different-family model; the conventions are the
+instrument. This is the paper's thesis applied to its own coding
+layer, and per-cell marker counts must be read with that dependence
+in view.
+
+Design note banked for series 3: a positives-only frame makes
+chance-corrected agreement fragile by construction; add recall-negative
+decoys to the IRR sample to de-saturate marginals.
+
+Pre-stated for incoming raters (before any further exports are read):
+each additional rater scores the SAME 28 cases; report pairwise kappa
+vs judge under K1-K6 unchanged, plus Fleiss' kappa over all raters on
+the common frame. A razor-armed second pass (send the three razors,
+re-rule only the 9 disagreements) is proposed to test razor-
+attributability causally; requires the coder not be told the judge's
+direction per case.
 
 ## Interpreter-seam dependency
 
