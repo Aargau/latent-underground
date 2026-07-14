@@ -153,8 +153,9 @@ blind) coded all 87 finals. Combined matrix (a/b/c per cell):
    with the remaining GLM-only candidates as low-priority residue.
 ## Human IRR (second coder, 2026-07-13)
 
-Second coder: independent, human, professional game designer (domain-
-native to text-game transcripts), working from the single-file workbench
+Second coder: independent, human, professional game designer (Joe
+Ganis, named with consent; domain-native to text-game transcripts),
+working from the single-file workbench
 (tools/rater_irr.html) — rules-only screens, NO access to the judge's
 conventions document, razors, or any prior coding. Export:
 tmp/joeg export.json. Conventions frozen in scripts/irr_kappa.py's
@@ -210,6 +211,30 @@ the common frame. A razor-armed second pass (send the three razors,
 re-rule only the 9 disagreements) is proposed to test razor-
 attributability causally; requires the coder not be told the judge's
 direction per case.
+
+Same-28 model baselines (extracted 2026-07-13 from the frozen 87-final
+passes; tmp/irr28_baseline.json): agreement vs judge — GLM 19/28
+(.679), terra 20/28 (.714), human second coder 19/28 (.679). One band,
+now like-for-like on cases. Y-MARGINALS DIVERGE: second coder 26/28,
+judge 21/28, GLM 18/28, terra 15/28 — terra is STRICTER than the judge
+on this frame, so rules-only raters do not uniformly run liberal; the
+human's over-confirmation is not a rules-only artifact. Cross-pairs:
+glm-terra 21/28, humancoder-glm 18/28, humancoder-terra 13/28 (widest
+gap in the matrix: most-liberal vs most-conservative rater). Four-way
+unanimity 11/28. Instrument confound, named: models coded WHOLE FILES
+under the rubric prompt; the human coded ATOMIC screens with the
+candidate quote pre-highlighted — a plausible confirmation nudge.
+
+PRE-STATED before the chat-tier pass (GPT-5.6 Sol: same family as
+terra, same atomic instrument as the human; pack tmp/sol_irr_pack.md,
+presentation order verified bit-exact to the human coder's recorded
+positions, 28/28): if the atomic-highlight form drives liberality,
+Sol's Y-marginal moves toward the human's (roughly >=22/28) and away
+from terra's 15/28; if family disposition dominates, Sol lands near
+terra. Directional lean, consistent with the program's thesis that
+instrument form shapes measurement: the former. Agreement-with-judge
+alone will not adjudicate (every rater so far sits .68-.71 regardless
+of marginals); the marginal is the discriminating statistic.
 
 ## Interpreter-seam dependency
 
