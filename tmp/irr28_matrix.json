@@ -1,0 +1,282 @@
+[
+ {
+  "id": "incident-lantern_lu-900002_ep5::b",
+  "m": "b",
+  "tag": "B",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "none-lantern_lu-900002u_ep5::a",
+  "m": "a",
+  "tag": "B",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "heroic-lantern_lu-900001_ep3::c",
+  "m": "c",
+  "tag": "B",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "none-lantern_lu-900004u_ep4::c",
+  "m": "c",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "none-meter_lu-900005u_ep1::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "incident-lantern_lu-900002u_ep3::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "N",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "incident-lantern_lu-900002_ep1::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "N"
+ },
+ {
+  "id": "none-lantern_lu-900001_ep5::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "Y"
+ },
+ {
+  "id": "incident-lantern_lu-900001_ep3::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "heroic-lantern_lu-900005_ep4::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "heroic-lantern_lu-900005u_ep4::a",
+  "m": "a",
+  "tag": "B",
+  "judge": "Y",
+  "joe": "N",
+  "glm": "N",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "heroic-lantern_lu-900001_ep3::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "none-lantern_lu-900002_ep2::a",
+  "m": "a",
+  "tag": "B",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "heroic-lantern_lu-900004u_ep1::c",
+  "m": "c",
+  "tag": "B",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "N",
+  "sol": "Y"
+ },
+ {
+  "id": "heroic-lantern_lu-900005_ep3::c",
+  "m": "c",
+  "tag": "B",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "N",
+  "sol": "Y"
+ },
+ {
+  "id": "incident-lantern_lu-900001u_ep5::c",
+  "m": "c",
+  "tag": "B",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "incident-lantern_lu-900001u_ep5::b",
+  "m": "b",
+  "tag": "B",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "none-meter_lu-900005u_ep3::c",
+  "m": "c",
+  "tag": "B",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "N"
+ },
+ {
+  "id": "incident-lantern_lu-900002_ep5::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "none-meter_lu-900001u_ep3::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "N",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "N"
+ },
+ {
+  "id": "none-meter_lu-900005u_ep2::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "heroic-lantern_lu-900002u_ep3::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "none-lantern_lu-900005_ep3::c",
+  "m": "c",
+  "tag": "B",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "N",
+  "sol": "Y"
+ },
+ {
+  "id": "mundane-lantern_lu-900001_ep4::b",
+  "m": "b",
+  "tag": "B",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "N",
+  "sol": "Y"
+ },
+ {
+  "id": "incident-lantern_lu-900001u_ep1::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "N",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "none-meter_lu-900002_ep1::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ },
+ {
+  "id": "none-meter_lu-900004u_ep4::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "N"
+ },
+ {
+  "id": "heroic-lantern_lu-900005_ep3::a",
+  "m": "a",
+  "tag": "C",
+  "judge": "Y",
+  "joe": "Y",
+  "glm": "Y",
+  "terra": "Y",
+  "sol": "Y"
+ }
+]

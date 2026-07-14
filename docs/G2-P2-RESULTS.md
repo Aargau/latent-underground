@@ -236,6 +236,50 @@ instrument form shapes measurement: the former. Agreement-with-judge
 alone will not adjudicate (every rater so far sits .68-.71 regardless
 of marginals); the marginal is the discriminating statistic.
 
+## Sol pass outcome (2026-07-13, same evening; prediction committed
+## before results were shared with the predicting analyst)
+
+PREDICTION FALSIFIED. Sol Y-marginal: 17/28 — beside the models (terra
+15, GLM 18), far from the human coder (26), well under the pre-stated
+>=22 threshold. Rater disposition dominates instrument form. The
+within-family instrument shift (terra whole-file 15 -> Sol atomic 17)
+is +2 toward liberal and is confounded with tier/reasoning-depth; the
+human-model marginal gap on the identical instrument is 9 (26 vs 17).
+The falsified lean was the analyst's (Fable), stated and committed in
+the section above; reported as the negative control it is — an
+instrument-effects program that predicted an instrument-form effect
+and measured disposition dominating it.
+
+Judge-Sol agreement: 24/28 (.857), kappa .68 (95% CI .39-.97) — the
+program's first healthy chance-corrected agreement and the judge's
+closest rater overall. Structure: Sol reproduces ALL SEVEN judge
+rejections from rules text alone (zero judge-N/Sol-Y) and cuts four
+judge confirmations. The four cuts split: two (c)-sacrifice cases cut
+by ALL THREE model passes against both humans (the exchange razor's
+bar lands lower in every model than in either human — (c) stays the
+contested marker, now with model-consensus structure); two (a) cases
+cut by Sol alone. Per-marker: (a) 16/18 (.89), (b) 3/3, (c) 5/7 —
+the robustness hierarchy's (a)-most-agreed prediction holds for Sol
+where it did not for the human coder.
+
+Five-rater matrix (tmp/irr28_matrix.json; two humans, three model
+passes, two families, two instrument forms, one rules text, one case
+set): Y-marginals terra 15 < Sol 17 < GLM 18 < judge 21 < human2 26.
+Pairwise agreement: judge-Sol 24, glm-terra 21, terra-Sol 20,
+judge-terra 20, judge-joe 19, judge-glm 19, glm-Sol 19, joe-glm 18,
+joe-Sol 15, joe-terra 13. Models form a conservative cluster; the
+humans span the extremes. Five-way unanimity 9/28; excluding the
+liberal human, 14/28. Reading: the rules text pins a core and leaves a
+strictness CUTPOINT free; raters resolve the cutpoint by disposition,
+not by species or instrument. Kappa-fragility refinement: the
+positives-only frame degenerates kappa under a Y-saturating rater (the
+human) but not under a conservative one (Sol, .68) — decoys remain the
+fix because rater marginals cannot be chosen in advance.
+
+Workbench timing metadata: not meaningful for paste-based raters
+(parser assigns uniform timestamps); timing comparisons are
+workbench-raters only.
+
 ## Interpreter-seam dependency
 
 Window-anomaly files (~9) remain in these tallies; the

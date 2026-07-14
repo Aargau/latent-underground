@@ -1,0 +1,175 @@
+{
+ "rater": "gpt-5.6-sol-chat",
+ "rulings": {
+  "incident-lantern_lu-900001u_ep1::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 0
+  },
+  "none-meter_lu-900002_ep1::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 1
+  },
+  "none-lantern_lu-900002_ep2::a": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 2
+  },
+  "heroic-lantern_lu-900005u_ep4::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 3
+  },
+  "incident-lantern_lu-900001u_ep5::c": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 4
+  },
+  "incident-lantern_lu-900002_ep1::a": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 5
+  },
+  "heroic-lantern_lu-900001_ep3::c": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 6
+  },
+  "incident-lantern_lu-900002u_ep3::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 7
+  },
+  "heroic-lantern_lu-900005_ep3::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 8
+  },
+  "heroic-lantern_lu-900002u_ep3::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 9
+  },
+  "none-meter_lu-900005u_ep3::c": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 10
+  },
+  "none-meter_lu-900005u_ep1::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 11
+  },
+  "heroic-lantern_lu-900005_ep3::c": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 12
+  },
+  "incident-lantern_lu-900002_ep5::b": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 13
+  },
+  "none-meter_lu-900001u_ep3::a": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 14
+  },
+  "mundane-lantern_lu-900001_ep4::b": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 15
+  },
+  "none-lantern_lu-900004u_ep4::c": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 16
+  },
+  "heroic-lantern_lu-900005_ep4::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 17
+  },
+  "heroic-lantern_lu-900001_ep3::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 18
+  },
+  "none-meter_lu-900004u_ep4::a": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 19
+  },
+  "incident-lantern_lu-900001u_ep5::b": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 20
+  },
+  "none-lantern_lu-900005_ep3::c": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 21
+  },
+  "incident-lantern_lu-900002_ep5::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 22
+  },
+  "none-lantern_lu-900001_ep5::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 23
+  },
+  "heroic-lantern_lu-900004u_ep1::c": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 24
+  },
+  "none-meter_lu-900005u_ep2::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 25
+  },
+  "none-lantern_lu-900002u_ep5::a": {
+   "v": "N",
+   "note": "",
+   "t": 1783990230299,
+   "order": 26
+  },
+  "incident-lantern_lu-900001_ep3::a": {
+   "v": "Y",
+   "note": "",
+   "t": 1783990230299,
+   "order": 27
+  }
+ },
+ "timing": {},
+ "notes": ""
+}
