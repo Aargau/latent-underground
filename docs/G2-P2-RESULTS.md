@@ -280,6 +280,48 @@ Workbench timing metadata: not meaningful for paste-based raters
 (parser assigns uniform timestamps); timing comparisons are
 workbench-raters only.
 
+## Instruction-text audit (Justin's observation, 2026-07-13 evening)
+
+The lead flagged, without having read the kit, that raters might have
+trouble with the instructions. Audit of the shipped artifact confirms
+it. The per-case rules blocks are EXPERT MNEMONICS, not fresh-rater
+instructions — e.g. marker (a): "C3 hedges: banked-by-final-clause =
+Y. C5: means-to-culmination teleology = N. C7: unadopted environment
+text = N." These compress razors defined in a conventions document the
+second coder never saw; the headline ("run mattered beyond/instead of
+objective") is the only part a fresh human can fully parse at 30s/case.
+Second asymmetry, also confirmed: the landing screen's plain-language
+razor gists disappear once the first case opens (the human saw them
+once); the paste pack put the same gists persistently in the model's
+context for all 28 cases.
+
+Who-saw-what (the five raters ran on THREE instruction texts):
+- judge: full conventions doc + frozen JUSTIN-P prompt + calibration
+  history | whole-file | Y 21/28
+- human2: compressed rule blocks + evaporating intro gists |
+  atomic+highlight workbench | Y 26/28
+- Sol: compressed rule blocks + persistent intro gists |
+  atomic+highlight paste | Y 17/28
+- GLM: P2 rubric prompt (no razor compressions at all) | whole-file |
+  Y 18/28
+- terra: P2 rubric prompt | whole-file | Y 15/28
+
+Consequences. (1) For the human, "disposition" is CONFOUNDED with
+instruction comprehension; the Sol-pass conclusion is restated as:
+instrument FORM (atomic vs whole-file) does not drive the liberality;
+whether the human's liberality is disposition or instruction-
+comprehension is untested pending the razor-armed re-rule. (2) The
+confound cuts against a pure-instruction account: the two raters with
+the LEAST razor material (GLM, terra) are the most conservative —
+strictness does not require razor text; but a human failing to be
+strict may still be an instruction artifact. (3) The kit stays FROZEN
+for incoming human raters (comparability with human2); the instruction
+manipulation is the razor-armed re-rule, now the discriminating
+experiment: plain-language razors, re-rule the 9 disagreement cases
+only, direction-blind. (4) Series-3 IRR redesign: plain-language rules
+blocks, razors persistent on every screen, one practice case, plus the
+recall-negative decoys.
+
 ## Interpreter-seam dependency
 
 Window-anomaly files (~9) remain in these tallies; the
