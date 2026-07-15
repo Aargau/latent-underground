@@ -204,3 +204,9 @@ SUBMISSION CHECKLIST
       section 9.
 - [ ] repo -> public; tag v1.0-arxiv; enable Zenodo code archiving
 - [ ] arXiv submit (cs.AI primary, cs.CL cross); endorsement code ready
+- [ ] Mark z.ai/GLM-5.2-derived release files as AI-generated + upstream-terms
+      notice (satisfies z.ai marking III.5.d and the CC-BY/FLAG-1 downstream
+      notice): a line in the Zenodo README and in the headers/README for
+      tmp/hetero_values.jsonl and tmp/p2final.jsonl stating these are GLM-5.2
+      (z.ai) model outputs subject to z.ai's Additional Terms, and that
+      downstream use to train or label models should consult those terms.
