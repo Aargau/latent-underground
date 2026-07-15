@@ -54,8 +54,8 @@ are introduced (verified: 0 in `main.tex`, `main.bbl`, and the compiled PDF).
 
 ## Open placeholders (human action required before submission)
 
-- Section 9 carries `[TODO: GitHub tag URL]` and `[TODO: Zenodo DOI]`, filled
-  at flip-day per docs/FLIP-DAY-RUNBOOK.md.
+- Section 9's GitHub tag URL and Zenodo DOI are now filled (tag v1.0-arxiv;
+  10.5281/zenodo.21384627). All source placeholders are resolved.
 - arXiv categories (primary `cs.AI`, cross-list `cs.CL`) are selected in the
   arXiv submission web form, not in the source.
 
