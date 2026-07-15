@@ -1,0 +1,263 @@
+\begin{thebibliography}{36}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alzahrani et~al.(2024)Alzahrani, Alyahya, Alnumay, Alrashed, Alsubaie,
+  Almushaykeh, Mirza, Alotaibi, Altwairesh, Alowisheq, Bari, and
+  Khan]{alzahrani2024benchmarks}
+N.~Alzahrani, H.~A. Alyahya, Y.~Alnumay, S.~Alrashed, S.~Alsubaie,
+  Y.~Almushaykeh, F.~Mirza, N.~Alotaibi, N.~Altwairesh, A.~Alowisheq, M.~S.
+  Bari, and H.~Khan.
+\newblock {When Benchmarks are Targets: Revealing the Sensitivity of Large
+  Language Model Leaderboards}.
+\newblock In \emph{ACL 2024}, 2024.
+\newblock arXiv:2402.01781.
+
+\bibitem[Bean et~al.(2025)Bean, Kearns, Romanou, et~al.]{bean2025measuring}
+A.~M. Bean, R.~O. Kearns, A.~Romanou, et~al.
+\newblock {Measuring what Matters: Construct Validity in Large Language Model
+  Benchmarks}.
+\newblock In \emph{NeurIPS 2025 Datasets and Benchmarks}, 2025.
+\newblock arXiv:2511.04703.
+
+\bibitem[Binz and Schulz(2023)]{binz2023cognitive}
+M.~Binz and E.~Schulz.
+\newblock {Using cognitive psychology to understand GPT-3}.
+\newblock \emph{PNAS}, 120\penalty0 (6):\penalty0 e2218523120, 2023.
+\newblock \doi{10.1073/pnas.2218523120}.
+
+\bibitem[Cote et~al.(2018)Cote, Kadar, Yuan, Kybartas, Barnes, Fine, Moore,
+  Hausknecht, El~Asri, Adada, et~al.]{cote2018textworld}
+M.-A. Cote, A.~Kadar, X.~Yuan, B.~Kybartas, T.~Barnes, E.~Fine, J.~Moore,
+  M.~Hausknecht, L.~El~Asri, M.~Adada, et~al.
+\newblock {TextWorld: A Learning Environment for Text-based Games}.
+\newblock In \emph{IJCAI 2018 Computer Games Workshop}, 2018.
+\newblock arXiv:1806.11532.
+
+\bibitem[Greenblatt et~al.(2024)Greenblatt, Denison, Wright, Roger, MacDiarmid,
+  Marks, Treutlein, et~al.]{greenblatt2024alignment}
+R.~Greenblatt, C.~Denison, B.~Wright, F.~Roger, M.~MacDiarmid, S.~Marks,
+  J.~Treutlein, et~al.
+\newblock {Alignment faking in large language models}, 2024.
+\newblock arXiv:2412.14093.
+
+\bibitem[Hausknecht et~al.(2020)Hausknecht, Ammanabrolu, Cote, and
+  Yuan]{hausknecht2020interactive}
+M.~Hausknecht, P.~Ammanabrolu, M.-A. Cote, and X.~Yuan.
+\newblock {Interactive Fiction Games: A Colossal Adventure}.
+\newblock In \emph{AAAI 2020}, 2020.
+\newblock arXiv:1909.05398.
+
+\bibitem[Kalai et~al.(2025)Kalai, Nachum, Vempala, and
+  Zhang]{kalai2025hallucinate}
+A.~T. Kalai, O.~Nachum, S.~S. Vempala, and E.~Zhang.
+\newblock {Why Language Models Hallucinate}, 2025.
+\newblock arXiv:2509.04664.
+
+\bibitem[Kapoor et~al.(2024)]{kapoor2024reforms}
+S.~Kapoor et~al.
+\newblock {REFORMS: Consensus-based Recommendations for Machine-learning-based
+  Science}.
+\newblock \emph{Science Advances}, 10:\penalty0 eadk3452, 2024.
+\newblock \doi{10.1126/sciadv.adk3452}.
+\newblock arXiv:2308.07832.
+
+\bibitem[Kirichenko et~al.(2025)Kirichenko, Ibrahim, Chaudhuri, and
+  Bell]{kirichenko2025abstentionbench}
+P.~Kirichenko, M.~Ibrahim, K.~Chaudhuri, and S.~J. Bell.
+\newblock {AbstentionBench: Reasoning LLMs Fail on Unanswerable Questions},
+  2025.
+\newblock arXiv:2506.09038.
+
+\bibitem[Krifka(2007)]{krifka2007approximate}
+M.~Krifka.
+\newblock {Approximate Interpretations of Number Words: A Case for Strategic
+  Communication}.
+\newblock In Gerlof Bouma, Irene Kraemer, and Joost Zwarts, editors,
+  \emph{Cognitive Foundations of Interpretation}, pages 111--126. KNAW,
+  Amsterdam, 2007.
+
+\bibitem[Lederman and Mahowald(2026)]{lederman2026emergent}
+H.~Lederman and K.~Mahowald.
+\newblock {Emergent Introspection in AI is Content-Agnostic}, 2026.
+\newblock arXiv:2603.05414.
+
+\bibitem[Lindsey(2025)]{lindsey2025introspective}
+J.~Lindsey.
+\newblock {Emergent Introspective Awareness in Large Language Models}.
+\newblock Transformer Circuits Thread, Anthropic.
+  \url{https://transformer-circuits.pub/2025/introspection/index.html}, 2025.
+\newblock Transformer Circuits Thread; arXiv:2601.01828.
+
+\bibitem[Maynez et~al.(2020)Maynez, Narayan, Bohnet, and
+  McDonald]{maynez2020faithfulness}
+J.~Maynez, S.~Narayan, B.~Bohnet, and R.~McDonald.
+\newblock {On Faithfulness and Factuality in Abstractive Summarization}.
+\newblock In \emph{ACL 2020}, 2020.
+\newblock arXiv:2005.00661.
+
+\bibitem[Mizrahi et~al.(2024)Mizrahi, Kaplan, Malkin, Dror, Shahaf, and
+  Stanovsky]{mizrahi2024state}
+M.~Mizrahi, G.~Kaplan, D.~Malkin, R.~Dror, D.~Shahaf, and G.~Stanovsky.
+\newblock {State of What Art? A Call for Multi-Prompt LLM Evaluation}.
+\newblock \emph{TACL}, 12, 2024.
+\newblock \doi{10.1162/tacl_a_00681}.
+\newblock arXiv:2401.00595.
+
+\bibitem[Needham et~al.(2025)]{needham2025evaluated}
+J.~Needham et~al.
+\newblock {Large Language Models Often Know When They Are Being Evaluated},
+  2025.
+\newblock arXiv:2505.23836.
+
+\bibitem[Paglieri et~al.(2025)]{paglieri2025balrog}
+D.~Paglieri et~al.
+\newblock {BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games}.
+\newblock In \emph{ICLR 2025}, 2025.
+\newblock arXiv:2411.13543.
+
+\bibitem[Panickssery et~al.(2024)Panickssery, Bowman, and
+  Feng]{panickssery2024evaluators}
+A.~Panickssery, S.~R. Bowman, and S.~Feng.
+\newblock {LLM Evaluators Recognize and Favor Their Own Generations}.
+\newblock In \emph{NeurIPS 2024}, 2024.
+\newblock arXiv:2404.13076.
+
+\bibitem[Payne(2025)]{payne2025risk}
+K.~Payne.
+\newblock {An analysis of AI Decision under Risk: Prospect theory emerges in
+  Large Language Models}, 2025.
+\newblock arXiv:2508.00902.
+
+\bibitem[Rajpurkar et~al.(2018)Rajpurkar, Jia, and Liang]{rajpurkar2018know}
+P.~Rajpurkar, R.~Jia, and P.~Liang.
+\newblock {Know What You Don't Know: Unanswerable Questions for SQuAD}.
+\newblock In \emph{ACL 2018}, 2018.
+\newblock arXiv:1806.03822.
+
+\bibitem[Reuel et~al.(2024)Reuel, Hardy, Smith, Lamparth, Hardy, and
+  Kochenderfer]{reuel2024betterbench}
+A.~Reuel, A.~Hardy, C.~Smith, M.~Lamparth, M.~Hardy, and M.~J. Kochenderfer.
+\newblock {BetterBench: Assessing AI Benchmarks, Uncovering Issues, and
+  Establishing Best Practices}.
+\newblock In \emph{NeurIPS 2024 Datasets and Benchmarks (spotlight)}, 2024.
+\newblock arXiv:2411.12990.
+
+\bibitem[Salewski et~al.(2023)Salewski, Alaniz, Rio-Torto, Schulz, and
+  Akata]{salewski2023impersonation}
+L.~Salewski, S.~Alaniz, I.~Rio-Torto, E.~Schulz, and Z.~Akata.
+\newblock {In-Context Impersonation Reveals Large Language Models' Strengths
+  and Biases}.
+\newblock In \emph{NeurIPS 2023 (spotlight)}, 2023.
+\newblock arXiv:2305.14930.
+
+\bibitem[Sclar et~al.(2024)Sclar, Choi, Tsvetkov, and
+  Suhr]{sclar2024quantifying}
+M.~Sclar, Y.~Choi, Y.~Tsvetkov, and A.~Suhr.
+\newblock {Quantifying Language Models' Sensitivity to Spurious Features in
+  Prompt Design or: How I learned to start worrying about prompt formatting}.
+\newblock In \emph{ICLR 2024}, 2024.
+\newblock arXiv:2310.11324.
+
+\bibitem[Tsvilodub et~al.(2025)Tsvilodub, Gandhi, Zhao, Fraenken, Franke, and
+  Goodman]{tsvilodub2025nonliteral}
+P.~Tsvilodub, K.~Gandhi, H.~Zhao, J.-P. Fraenken, M.~Franke, and N.~D. Goodman.
+\newblock {Non-literal Understanding of Number Words by Language Models}.
+\newblock In \emph{CogSci 2025}, 2025.
+\newblock arXiv:2502.06204.
+
+\bibitem[{UK AI Security Institute}(2024)]{ukaisi2024inspect}
+{UK AI Security Institute}.
+\newblock {Inspect AI: Framework for Large Language Model Evaluations}.
+\newblock \url{https://github.com/UKGovernmentBEIS/inspect_ai}, 2024.
+
+\bibitem[van~der Weij et~al.(2024)van~der Weij, Hofstaetter, Jaffe, Brown, and
+  Ward]{vanderweij2024sandbagging}
+T.~van~der Weij, F.~Hofstaetter, O.~Jaffe, S.~F. Brown, and F.~R. Ward.
+\newblock {AI Sandbagging: Language Models can Strategically Underperform on
+  Evaluations}, 2024.
+\newblock arXiv:2406.07358.
+
+\bibitem[van Miltenburg et~al.(2021)van Miltenburg, van~der Lee, and
+  Krahmer]{vanmiltenburg2021preregistering}
+E.~van Miltenburg, C.~van~der Lee, and E.~Krahmer.
+\newblock {Preregistering NLP Research}.
+\newblock In \emph{NAACL 2021}, 2021.
+\newblock URL \url{https://aclanthology.org/2021.naacl-main.51/}.
+\newblock arXiv:2103.06944.
+
+\bibitem[Wallach et~al.(2025)]{wallach2025position}
+H.~Wallach et~al.
+\newblock {Position: Evaluating Generative AI Systems Is a Social Science
+  Measurement Challenge}, 2025.
+\newblock arXiv:2502.00561.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Li, Chen, et~al.]{wang2024fair}
+P.~Wang, L.~Li, L.~Chen, et~al.
+\newblock {Large Language Models are not Fair Evaluators}.
+\newblock In \emph{ACL 2024}, 2024{\natexlab{a}}.
+\newblock arXiv:2305.17926.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Todd, Xiao, Yuan, Cote, Clark,
+  and Jansen]{wang2024simulators}
+R.~Wang, G.~Todd, Z.~Xiao, X.~Yuan, M.-A. Cote, P.~Clark, and P.~Jansen.
+\newblock {Can Language Models Serve as Text-Based World Simulators?}
+\newblock In \emph{ACL 2024 (short)}, 2024{\natexlab{b}}.
+\newblock arXiv:2406.06485.
+
+\bibitem[Wen et~al.(2025)Wen, Yao, Feng, Xu, Tsvetkov, Howe, and
+  Wang]{wen2025know}
+B.~Wen, J.~Yao, S.~Feng, C.~Xu, Y.~Tsvetkov, B.~Howe, and L.~L. Wang.
+\newblock {Know Your Limits: A Survey of Abstention in Large Language Models}.
+\newblock \emph{TACL}, 13, 2025.
+\newblock \doi{10.1162/tacl_a_00754}.
+\newblock arXiv:2407.18418.
+
+\bibitem[Xu et~al.(2026)Xu, Jettkant, and Ruis]{xu2026depth}
+Y.~Xu, P.~Jettkant, and L.~Ruis.
+\newblock {The Depth Ceiling: On the Limits of Large Language Models in
+  Discovering Latent Planning}, 2026.
+\newblock arXiv:2604.06427.
+
+\bibitem[Zhao et~al.(2020)Zhao, Cohen, and Webber]{zhao2020reducing}
+Z.~Zhao, S.~B. Cohen, and B.~Webber.
+\newblock {Reducing Quantity Hallucinations in Abstractive Summarization}.
+\newblock In \emph{Findings of EMNLP 2020}, 2020.
+\newblock arXiv:2009.13312.
+
+\bibitem[Zheng et~al.(2024{\natexlab{a}})Zheng, Zhou, Meng, Zhou, and
+  Huang]{zhengc2024robust}
+C.~Zheng, H.~Zhou, F.~Meng, J.~Zhou, and M.~Huang.
+\newblock {Large Language Models Are Not Robust Multiple Choice Selectors}.
+\newblock In \emph{ICLR 2024}, 2024{\natexlab{a}}.
+\newblock arXiv:2309.03882.
+
+\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing, Zhang, Gonzalez, and Stoica]{zhengl2023judging}
+L.~Zheng, W.-L. Chiang, Y.~Sheng, S.~Zhuang, Z.~Wu, Y.~Zhuang, Z.~Lin, Z.~Li,
+  D.~Li, E.~P. Xing, H.~Zhang, J.~E. Gonzalez, and I.~Stoica.
+\newblock {Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena}.
+\newblock In \emph{NeurIPS 2023 Datasets and Benchmarks}, 2023.
+\newblock arXiv:2306.05685.
+
+\bibitem[Zheng et~al.(2024{\natexlab{b}})Zheng, Pei, Logeswaran, Lee, and
+  Jurgens]{zhengm2024helpful}
+M.~Zheng, J.~Pei, L.~Logeswaran, M.~Lee, and D.~Jurgens.
+\newblock {When ``A Helpful Assistant'' Is Not Really Helpful: Personas in
+  System Prompts Do Not Improve Performances of Large Language Models}.
+\newblock In \emph{Findings of EMNLP 2024}, 2024{\natexlab{b}}.
+\newblock arXiv:2311.10054.
+
+\bibitem[Zhu et~al.(2025)Zhu, Jin, Pruksachatkun, Zhang, Liu, Cui, Kapoor,
+  Longpre, et~al.]{zhu2025establishing}
+Y.~Zhu, T.~Jin, Y.~Pruksachatkun, A.~Zhang, S.~Liu, S.~Cui, S.~Kapoor,
+  S.~Longpre, et~al.
+\newblock {Establishing Best Practices for Building Rigorous Agentic
+  Benchmarks}.
+\newblock In \emph{NeurIPS 2025}, 2025.
+\newblock arXiv:2507.02825.
+
+\end{thebibliography}
