@@ -1193,11 +1193,7 @@ matching the paper.
 The verification loop for any reader: check the preregistration commit
 timestamps on GitHub, download the Zenodo archive, run sha256 -c
 MANIFEST.sha256 to confirm the logs match what the committed manifest
-promised, then rerun scripts/*\_readout.py and
-scripts/scarcity\_recount.py to recompute every table. Provider terms
-for publishing model outputs as research data (Anthropic and z.ai) were
-reviewed {[}TODO: verify: the provider-terms review is an unchecked item
-on the release checklist; complete and note the outcome here{]}.
+promised, then rerun scripts/*\_readout.py, scripts/scarcity\_recount.py, scripts/unmappable\_census.py, and scripts/irr\_kappa.py to recompute every table. The readout and census scripts read the Zenodo logs (a fresh clone contains none); scarcity\_recount and irr\_kappa read the derived-data and coding-record inputs committed under tmp/ in the repository. Several table cells are column sums or subset counts over these scripts' output rather than a single printed line, and docs/RELEASE.md gives the exact per-cell recompute recipe. Provider terms for the released model outputs (Anthropic Commercial Terms of Service; OpenAI Terms of Use with its Sharing and Publication Policy; and the z.ai / JINGSHENG HENGXING Terms of Use with Additional Terms for API Services) were reviewed as of 2026-07-15 (docs/PROVIDER-TERMS-REVIEW.md). As read on that date, each leaves ownership of model outputs with the user, none bars publishing those outputs as research data, and the disclosure and no-misrepresentation conditions the terms attach are met by the AI-use statement in section 8. One caveat is recorded for the openly licensed GLM-5.2 (z.ai) portion: z.ai's Additional Terms restrict using its model-generated content to train or label external models, which an unrestricted CC BY 4.0 grant does not mirror, so the z.ai-derived files are marked as AI-generated and carry an upstream-terms notice. This is a reading of the terms as of the access date, not legal advice.
 
 \bibliographystyle{plainnat}
 \nocite{*}
