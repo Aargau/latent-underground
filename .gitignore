@@ -8,3 +8,9 @@ logs/
 *.zip
 # held-out instances never enter history, even in the private repo
 configs/instances/heldout/
+# Codex session scratch
+.codex-resume-review/
+# working intermediates (finals are committed: p2final.jsonl, p2gpt56_final.jsonl, hetero_values.jsonl)
+tmp/hetero_p2.jsonl
+tmp/p2dump/
+tmp/*snap.jsonl
