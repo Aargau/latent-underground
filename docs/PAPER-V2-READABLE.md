@@ -1,3 +1,5 @@
+> Superseded by docs/PAPER-V3.md, the submitted version. Retained as drafting history.
+
 <!-- PAPER-V2-READABLE, produced 2026-07-14 by Fable-5 (readability editor) as a prose
 transformation of PAPER-V1.md. Same section skeleton, same numbers, same claims; register
 changed per PI instruction (plain openings, define-then-use for coinages, no density-as-depth).

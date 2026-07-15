@@ -54,7 +54,9 @@ are introduced (verified: 0 in `main.tex`, `main.bbl`, and the compiled PDF).
 
 ## Open placeholders (human action required before submission)
 
-- `%TODO-corabo-email` -- author email (title block).
-- arXiv categories -- primary `cs.AI`, cross-list `cs.CL` (preamble TODO comment).
-- `[TODO: GitHub tag URL]`, `[TODO: Zenodo DOI]`, and the provider-terms review
-  outcome sentence -- all in Section 9 (Data availability); left as visible TODOs.
+- Section 9 carries `[TODO: GitHub tag URL]` and `[TODO: Zenodo DOI]`, filled
+  at flip-day per docs/FLIP-DAY-RUNBOOK.md.
+- arXiv categories (primary `cs.AI`, cross-list `cs.CL`) are selected in the
+  arXiv submission web form, not in the source.
+
+Author email and the provider-terms outcome are now filled in the source.

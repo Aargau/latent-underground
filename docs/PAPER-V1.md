@@ -1,3 +1,5 @@
+> Superseded by docs/PAPER-V3.md, the submitted version. Retained as drafting history.
+
 <!-- PAPER-V1 assembled 2026-07-13 by Fable-5 (assembler), from repository documents only:
 PAPER-SKELETON.md, PAPER-RESULTS-DRAFT.md, GATE0-PREREG.md, GATE1-PREREG-DRAFT.md,
 GATE2-PREREG-DRAFT.md, G2-P2-CODING.md, G2-P2-RESULTS.md, RELEASE.md, SPEC.md, README.md,
