@@ -8,10 +8,12 @@ calibration.
 
 **The DM proposes, the engine disposes, the DM narrates.**
 
-Full design rationale: [docs/SPEC.md](docs/SPEC.md). This repo is
-**instrument mode** and stays private per the contamination strategy (SPEC
-section 9) — the demo-mode prompt is a separate, deliberately sacrificial
-artifact.
+Full design rationale: [docs/SPEC.md](docs/SPEC.md). This repository contains
+the **instrument-mode** implementation used in the paper. It remained private
+while evaluations were run under the contamination strategy (SPEC section 9),
+then was made public with the paper. The demo-mode prompt remains a separate,
+deliberately sacrificial artifact. Because the instrument is now public, future
+evaluations should treat exposure and contamination as possible.
 
 ## Architecture
 
