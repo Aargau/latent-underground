@@ -292,8 +292,13 @@ class Engine:
     def _op_halt(self, p: OpProposal, delta: Delta) -> None:
         self.state.terminal = "HALT"
         delta.terminal = "HALT"
+        # Series-3 interpreter seam: keep the confidence and its provenance on
+        # the terminal verdict event itself. The generic validated-op envelope
+        # still carries both fields for backward-compatible log consumers.
         delta.events.append({"type": "halted", "reason": p.args.get("reason", ""),
-                             "verdict": p.args.get("verdict", "")})
+                             "verdict": p.args.get("verdict", ""),
+                             "confidence": p.confidence,
+                             "confidence_provenance": p.confidence_provenance})
 
     def _bearing(self, from_site: str, to_site: str) -> str:
         """Deterministic pseudo-bearing, stable per (instance, site pair)."""
