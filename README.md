@@ -44,6 +44,24 @@ inspect eval src/latent_underground/task.py@latent_underground \
   --model-role dm_interpreter=ollama/qwen
 ```
 
+For the OpenAI-compatible local-player route, install the provider client too:
+
+```powershell
+pip install -e ".[dev,local]"
+$env:QWEN_API_KEY = "local-loopback-sentinel"
+```
+
+The sentinel is not a credential; the loopback llama.cpp server does not
+enforce an API key. Do not reuse a real provider key for this route.
+
+`run_grid.py` treats each player endpoint and temperature, each DM
+temperature, and `limits.max_connections` as execution parameters. Dry-run
+prints their effective values. The safe default is one connection; raise it
+only for a route with separate concurrency evidence. For an OpenAI-compatible
+local player, keep the loopback `base_url` in the harness and provide only the
+provider's required non-secret local API-key sentinel through the environment,
+never a real credential in YAML.
+
 Written against inspect-ai ~0.3.x; model-role and message APIs drift between
 versions — expect to touch `task.py` and `dm.py` on first run.
 

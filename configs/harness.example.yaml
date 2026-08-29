@@ -7,7 +7,7 @@ players:
   - {model: "anthropic/EDIT-dated-snapshot", temp: 0.7}
   - {model: "openai/EDIT-dated-snapshot", temp: 0.7}          # logprobs: yes
   - {model: "google/EDIT-dated-snapshot", temp: 0.7}
-  - {model: "openai-api/local/qwen", base_url: "http://localhost:8000/v1", temp: 0.7}  # vLLM; logprobs: yes
+  - {model: "openai-api/qwen/qwen", base_url: "http://127.0.0.1:8000/v1", temp: 0.7}  # OpenAI-compatible local server; logprobs route still requires qualification
   - {model: "ollama/gemma", temp: 0.7}
 
 # DM seat: instruction-following strength, not frontier reasoning.
@@ -31,5 +31,6 @@ design:
   instances_per_cell: 30
 
 limits:
+  max_connections: 1    # AIR local profile is parallel-1 until separately qualified
   message_limit: 120     # hard guard: unsolvable instances are the cost hazard
   token_limit: 200000

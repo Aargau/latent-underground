@@ -13,6 +13,7 @@ dependencies = [
 [project.optional-dependencies]
 matcher = ["sentence-transformers"]
 dev = ["pytest"]
+local = ["openai>=3.1.0"]
 
 [build-system]
 requires = ["setuptools>=68"]
