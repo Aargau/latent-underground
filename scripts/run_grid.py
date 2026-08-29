@@ -78,10 +78,41 @@ def max_connections(harness: dict[str, Any]) -> int:
     return value
 
 
+def positive_int(value: str) -> int:
+    """Parse a positive command-line integer."""
+    result = int(value)
+    if result < 1:
+        raise argparse.ArgumentTypeError("must be a positive integer")
+    return result
+
+
+def instances_per_cell(harness: dict[str, Any]) -> int | None:
+    """Read the design target without pretending it is an Inspect epoch count."""
+    design = harness.get("design") or {}
+    if not isinstance(design, dict):
+        raise ValueError("design must be a mapping")
+    value = design.get("instances_per_cell")
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+        raise ValueError("design.instances_per_cell must be a positive integer")
+    return value
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("harness")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument(
+        "--limit",
+        type=positive_int,
+        help="maximum task samples per cell (engineering bound)",
+    )
+    ap.add_argument(
+        "--epochs",
+        type=positive_int,
+        help="explicit Inspect epochs per selected sample",
+    )
     ap.add_argument("--task",
                     default="src/latent_underground/task.py@latent_underground")
     args = ap.parse_args()
@@ -89,9 +120,20 @@ def main() -> None:
     h = yaml.safe_load(Path(args.harness).read_text())
     cells = list(itertools.product(h["players"], h["dms"]))
     connection_limit = max_connections(h)
+    design_target = instances_per_cell(h)
 
     print(f"grid: {len(h['players'])} players x {len(h['dms'])} dms "
           f"= {len(cells)} cells")
+    print(
+        "execution: "
+        f"limit={args.limit}, epochs={args.epochs}, "
+        f"design_instances_per_cell={design_target}"
+    )
+    if design_target is not None and args.epochs is None:
+        print(
+            "  !! design.instances_per_cell is not mapped to Inspect epochs; "
+            "a real run requires explicit --epochs"
+        )
     for player, dm in cells:
         player_temperature = temperature(player, "player")
         dm_temperature = temperature(dm, "DM")
@@ -120,6 +162,13 @@ def main() -> None:
 
     if args.dry_run:
         return
+
+    if design_target is not None and args.epochs is None:
+        raise ValueError(
+            "design.instances_per_cell is a target, not an executable epoch "
+            "count; pass --epochs explicitly after checking the selected task "
+            "dataset (use --limit to bound an engineering smoke)"
+        )
 
     from inspect_ai import eval_set  # deferred: dry-run needs no inspect
     from inspect_ai.model import GenerateConfig, get_model
@@ -155,6 +204,8 @@ def main() -> None:
             max_connections=connection_limit,
             message_limit=limits.get("message_limit", 120),
             token_limit=limits.get("token_limit"),
+            limit=args.limit,
+            epochs=args.epochs,
         )
 
 

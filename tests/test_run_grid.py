@@ -20,8 +20,17 @@ def load_run_grid():
     return module
 
 
-def write_harness(path: Path, max_connections: int | None = None) -> None:
+def write_harness(
+    path: Path,
+    max_connections: int | None = None,
+    instances_per_cell: int | None = None,
+) -> None:
     limit_line = "" if max_connections is None else f"  max_connections: {max_connections}\n"
+    design = (
+        ""
+        if instances_per_cell is None
+        else f"design:\n  instances_per_cell: {instances_per_cell}\n"
+    )
     path.write_text(
         "players:\n"
         "  - model: openai-api/qwen/qwen\n"
@@ -31,6 +40,7 @@ def write_harness(path: Path, max_connections: int | None = None) -> None:
         "  - model: anthropic/claude-test\n"
         "    temp: 0.9\n"
         "classifiers: []\n"
+        f"{design}"
         "limits:\n"
         f"{limit_line}"
         "  message_limit: 120\n"
@@ -100,6 +110,8 @@ def test_eval_set_receives_distinct_model_configs_and_explicit_endpoint(
         assert dm_call["kwargs"]["memoize"] is False
         assert dm_call["kwargs"]["config"].kwargs == {"temperature": 0.9}
     assert call["max_connections"] == 1
+    assert call["limit"] is None
+    assert call["epochs"] is None
     assert "temperature" not in call
     assert "model_base_url" not in call
 
@@ -112,3 +124,47 @@ def test_runner_rejects_unwired_dm_endpoint_and_invalid_connection_limit():
         )
     with pytest.raises(ValueError, match="positive integer"):
         module.max_connections({"limits": {"max_connections": 0}})
+
+
+def test_declared_design_requires_explicit_epochs_for_execution(
+    tmp_path, monkeypatch, capsys
+):
+    module = load_run_grid()
+    harness = tmp_path / "harness.yaml"
+    write_harness(harness, instances_per_cell=30)
+    monkeypatch.setattr(sys, "argv", ["run_grid.py", str(harness)])
+
+    with pytest.raises(ValueError, match="pass --epochs explicitly"):
+        module.main()
+
+    assert "not mapped to Inspect epochs" in capsys.readouterr().out
+
+
+def test_engineering_bounds_are_forwarded(tmp_path, monkeypatch):
+    module = load_run_grid()
+    harness = tmp_path / "harness.yaml"
+    write_harness(harness, instances_per_cell=30)
+    eval_calls = []
+
+    class FakeGenerateConfig:
+        def __init__(self, **kwargs):
+            self.kwargs = kwargs
+
+    inspect_module = ModuleType("inspect_ai")
+    inspect_module.eval_set = lambda **kwargs: eval_calls.append(kwargs)
+    model_module = ModuleType("inspect_ai.model")
+    model_module.GenerateConfig = FakeGenerateConfig
+    model_module.get_model = lambda name, **kwargs: {"name": name, "kwargs": kwargs}
+    monkeypatch.setitem(sys.modules, "inspect_ai", inspect_module)
+    monkeypatch.setitem(sys.modules, "inspect_ai.model", model_module)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["run_grid.py", str(harness), "--limit", "1", "--epochs", "2"],
+    )
+
+    module.main()
+
+    assert len(eval_calls) == 1
+    assert eval_calls[0]["limit"] == 1
+    assert eval_calls[0]["epochs"] == 2

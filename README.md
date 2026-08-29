@@ -62,6 +62,12 @@ local player, keep the loopback `base_url` in the harness and provide only the
 provider's required non-secret local API-key sentinel through the environment,
 never a real credential in YAML.
 
+`design.instances_per_cell` is a research target, not enough information to
+derive Inspect epochs from an arbitrary task dataset. A real grid run therefore
+requires an explicit `--epochs` when that target is present. Use `--limit 1
+--epochs 1` for a bounded engineering smoke; this deliberately does not satisfy
+or qualify the research target.
+
 Written against inspect-ai ~0.3.x; model-role and message APIs drift between
 versions — expect to touch `task.py` and `dm.py` on first run.
 
