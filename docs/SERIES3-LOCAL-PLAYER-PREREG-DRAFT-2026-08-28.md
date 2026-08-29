@@ -22,7 +22,7 @@ Crossed player x dm cells, per the existing harness design. Factored so each com
 | L-S | local Qwen3.8-Flash-Next | GPT-5.6 Sol | narrator effect on local player |
 | F-S | series-2-family frontier player | GPT-5.6 Sol | narrator channel-law replication (player held at published family) |
 
-DEFAULT: run L-H and F-S first (they carry the two claims); L-S is the budget-optional completion of the square. Comparisons are within-column or within-row only; diagonal comparisons are recorded as observations, never findings.
+Ratified 2026-08-28: L-H and F-S run first (they carry the two claims). L-S is decided afterward from run telemetry — local wall-clock and token cost observed in L-H, API spend observed in F-S — and either outcome is recorded as a written amendment, not an ad-hoc launch. Comparisons are within-column or within-row only; diagonal comparisons are recorded as observations, never findings.
 
 ## Workload and sizing
 
@@ -37,9 +37,11 @@ Wall-clock disclosure for ratification: local-player games at the qualified ~15 
 | Player (local) | openai-api/qwen/qwen, base_url http://127.0.0.1:8000/v1 | 0.7 | AIR latent profile name + AIR commit + llama-server build SHA-256 + GGUF descriptor (see provenance) |
 | Player (frontier, F-S) | series-2 player family, dated snapshot | 0.7 | model string + version_date in manifest |
 | DM haiku family | per harness | 0.7 (published series-2 value) | dated snapshot in manifest |
-| DM GPT-5.6 Sol | openai route | RATIFY: 0.7 for cross-family symmetry, or vendor-recommended value recorded with rationale | dated snapshot in manifest |
+| DM GPT-5.6 Sol | openai route | vendor-appropriate operating point, exact value recorded in the manifest at launch | dated snapshot in manifest |
 
-Temperature is a per-seat, per-vendor pinned parameter. Comparability claims are scoped to same-seat-same-temp pairs. No seat inherits a temperature from an example file.
+Ratified 2026-08-28, Sol DM temperature: the seat runs at its own family's intended operating point rather than inheriting the haiku-calibrated 0.7. Rationale: within-family consistency is the control, so cross-family narrator claims are phenomenon-level (presence and direction of scarcity compression and state-dependent honesty), not rate-matched. Forcing a foreign family's temperature would itself be a treatment.
+
+Temperature is a per-seat, per-vendor pinned parameter. Rate comparisons are scoped to same-seat-same-temp pairs; cross-family narrator comparisons are phenomenon-level by design, per the ratified decision above. No seat inherits a temperature from an example file.
 
 ## Instrument preconditions — blocking
 
